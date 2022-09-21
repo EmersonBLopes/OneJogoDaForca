@@ -3,7 +3,9 @@ body{
 }
 
 .logo{
-	margin:40px 0 0 40px;
+	position:absolute;
+	top:40px;
+	left:40px;
 }
 
 .principal{
@@ -18,12 +20,19 @@ body{
 	flex-direction:column;
 	justify-content:space-between;
 	height:60%;
+	width:90%;
+	max-width:688px;
  }
 
+.primeira-secao-flex{
+	width:100%;
+}
+
 .entrada-de-texto{
+	align-self:start;
 	font-size:32px;
 	color:var(--main-color);
-	width:413px;
+	width:300px;
 	height:48px;
 	border:none;
 	background:transparent;
@@ -72,3 +81,11 @@ body{
 	border:1px var(--main-color) solid;
 }
 
+@media(max-width:375px){
+	.botoes{
+		flex-direction:column;
+	}
+	#botao-primario{
+		margin: 0 0 24px 0;
+	}
+}
