@@ -84,6 +84,7 @@ body{
 @media(max-width:375px){
 	.botoes{
 		flex-direction:column;
+		align-items:center;
 	}
 	#botao-primario{
 		margin: 0 0 24px 0;
