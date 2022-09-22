@@ -59,7 +59,32 @@ body{
 	color:#495057;
 }
 	 
-	
+.botoes{
+	display:flex;
+	justify-content:center;
+}
+
+.botao{
+	font-size:1rem;
+	width:100%;
+	max-width:332px;
+	height:67px;
+	border:none;
+	border-radius:24px;
+	cursor:pointer;
+}
+
+#botao-primario{
+	color:#fff;
+	background:var(--main-color);
+	margin-right:24px;
+}
+
+#botao-secundario{
+	background:transparent;
+	color:var(--main-color);
+	border:1px var(--main-color) solid;
+}
 
 @media(max-width:375px){
 	.botoes{

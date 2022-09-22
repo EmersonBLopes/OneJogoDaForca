@@ -13,14 +13,14 @@ body{
 .principal{
 	display:flex;
 	flex-direction:column;
-	height:89vh;
+	height:85vh;
 	align-items:center;
 	justify-content:center;
 } 
 
 .conteudo{
 	height:100%;
-	width:50%;
+	width:90%;
 	display:flex;
 	flex-direction:column;
 	justify-content:space-between;
@@ -31,8 +31,16 @@ canvas{
 }
 
 .quadro{
+	align-self:center;
+	width:90%;
+	max-width:626px;
 	display:flex;
 	flex-direction:column;
+ }
+
+ .forca{
+	 height:50vh;
+	 margin-bottom:10%;
  }
 
  .letras-palavra{
