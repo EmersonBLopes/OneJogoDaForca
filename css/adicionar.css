@@ -2,15 +2,17 @@ body{
 	background:var(--background-color);
 }
 
+.cabecalho{
+	height:11vh;
+}
+
 .logo{
-	position:absolute;
-	top:40px;
-	left:40px;
+	margin: 40px 40px 0;
 }
 
 .principal{
 	display:flex;
-	height:100vh;
+	height:89vh;
 	align-items:center;
 	justify-content:center;
 } 
@@ -32,7 +34,8 @@ body{
 	align-self:start;
 	font-size:32px;
 	color:var(--main-color);
-	width:300px;
+	width:100%;
+	max-width:300px;
 	height:48px;
 	border:none;
 	background:transparent;
@@ -56,30 +59,7 @@ body{
 	color:#495057;
 }
 	 
-.botoes{
-	display:flex;
-}
-
-.botao{
-	font-size:1rem;
-	width:317px;
-	height:67px;
-	border:none;
-	border-radius:24px;
-	cursor:pointer;
-}
-
-#botao-primario{
-	color:#fff;
-	background:var(--main-color);
-	margin-right:24px;
-}
-
-#botao-secundario{
-	background:transparent;
-	color:var(--main-color);
-	border:1px var(--main-color) solid;
-}
+	
 
 @media(max-width:375px){
 	.botoes{
