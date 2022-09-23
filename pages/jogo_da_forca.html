@@ -6,6 +6,7 @@
 		<title>Jogo da forca</title>
 		<link rel="stylesheet" href="./../css/reset.css"/>
 		<link rel="stylesheet" href="./../css/jogo.css"/>
+		<script src="./../js/script.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -14,8 +15,8 @@
 		<main class="principal">
 			<div class="conteudo">
 				<div class="quadro">
-					<canvas class="forca"></canvas>
-					<canvas class="letras-palavra"></canvas>
+					<svg class="forca" id="quadro-forca"></svg>
+					<canvas class="letras-palavra" id="quadro-letras"></canvas>
 				</div>
 				<div class="botoes">
 					<button class="botao" id="botao-primario">Novo Jogo</button>
