@@ -26,10 +26,6 @@ body{
 	justify-content:space-between;
 }
 
-canvas{
-	background:red;
-}
-
 .quadro{
 	align-self:center;
 	width:90%;
