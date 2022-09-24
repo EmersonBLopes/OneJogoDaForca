@@ -5,6 +5,7 @@ var telaForca = document.getElementById("quadro-forca");
 const svgNS = "http://www.w3.org/2000/svg";
 
 var palavra = "calopsita";
+var historicoDeLetras = new Array();
 var tentativas = 9;
 var acertos = new Array(palavra.length);
 var letra;
@@ -12,66 +13,92 @@ for (var i = 0; i < acertos.length; i++) {
     acertos[i] = 0;
 }
 
+function verificaHistorico(letra){
+
+	var resultado = false;
+
+	for(var i=0; i < historicoDeLetras.length; i++){
+		if(historicoDeLetras[i] == letra){
+			resultado = !resultado;
+			console.log("achou!");
+			break;
+		}
+	}
+	historicoDeLetras.push(letra);
+
+	return resultado;
+}
+
 function comparar(letra) {
+
     var acertou = false;
     var ganhou = true;
-    for (i = 0; i < palavra.length; i++) {
-        if (palavra[i] == letra) {
-            acertos[i] = 1;
-            acertou = true;
-        }
-    }
-    if (!acertou) {
-        tentativas--;
-		switch(tentativas){
 
-			case 8:
-				desenhaSegundaLinha();
-				break;
+	console.log(historicoDeLetras);
 
-			case 7:
-				desenhaTerceiraLinha();
-				break;
-
-			case 6:
-				desenhaQuartaLinha();
-				break;
-			
-			case 5:
-				desenhaCabeca();
-				break;
-
-			case 4:
-				desenhaTronco();
-				break;
-			
-			case 3:
-				desenhaPernaDireita();
-				break;
-			
-			case 2:
-				desenhaPernaEsquerda();
-				break;
-			case 1:
-				desenhaBracoDireito();
-				break;
-				
-			case 0:
-				desenhaBracoEsquerdo();
-				break;
+	if(!verificaHistorico(letra)){
+		for (i = 0; i < palavra.length; i++) {
+			if (palavra[i] == letra) {
+				acertos[i] = 1;
+				acertou = true;
+			}
 		}
-    }
-    for (i = 0; i < acertos.length; i++) {
-        if (acertos[i] != 1) {
-            ganhou = false;
-        }
-    }
+		if (!acertou) {
+			tentativas--;
+			switch(tentativas){
+
+				case 8:
+					desenhaSegundaLinha();
+					break;
+
+				case 7:
+					desenhaTerceiraLinha();
+					break;
+
+				case 6:
+					desenhaQuartaLinha();
+					break;
+
+				case 5:
+					desenhaCabeca();
+					break;
+
+				case 4:
+					desenhaTronco();
+					break;
+
+				case 3:
+					desenhaPernaDireita();
+					break;
+
+				case 2:
+					desenhaPernaEsquerda();
+					break;
+				case 1:
+					desenhaBracoDireito();
+					break;
+
+				case 0:
+					desenhaBracoEsquerdo();
+					break;
+			}
+		}
+		for (i = 0; i < acertos.length; i++) {
+			if (acertos[i] != 1) {
+				ganhou = false;
+			}
+		}
+	}else{
+		ganhou = !ganhou;
+	}
     return ganhou;
 }
+
 do {
     letra = prompt("digite uma letra:");
     if (comparar(letra)) {
         console.log("parabens, voce ganhou!");
+		break;
     }
     else if (tentativas == 0) {
         console.log("voce perdeu");
