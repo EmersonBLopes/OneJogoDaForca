@@ -94,19 +94,6 @@ function comparar(letra) {
     return ganhou;
 }
 
-do {
-    letra = prompt("digite uma letra:");
-    if (comparar(letra)) {
-        console.log("parabens, voce ganhou!");
-		break;
-    }
-    else if (tentativas == 0) {
-        console.log("voce perdeu");
-    }
-    console.log(acertos, tentativas);
-} while (tentativas > 0);
-
-
 function desenhaLinhaBase(){
 	const primeiraLinha = document.createElementNS(svgNS,"line");
 	primeiraLinha.setAttributeNS(null,"x1",larguraMaximaForca()-larguraMaximaForca()*0.95);
