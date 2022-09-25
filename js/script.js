@@ -33,10 +33,12 @@ function comparar(letra) {
 
     var acertou = false;
     var ganhou = true;
+	var botao = document.getElementById(`tecla-${letra}`);
 
 	console.log(historicoDeLetras);
 
 	if(!verificaHistorico(letra)){
+		botao.classList.toggle("tecla-desativada");
 		for (i = 0; i < palavra.length; i++) {
 			if (palavra[i] == letra) {
 				acertos[i] = 1;
