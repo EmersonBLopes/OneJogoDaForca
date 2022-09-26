@@ -1,5 +1,5 @@
-var mainColor = "#0A3871";
-var backgroundColor = "#F3F5FC";
+const mainColor = "#0A3871";
+const backgroundColor = "#F3F5FC";
 
 var telaForca = document.getElementById("quadro-forca");
 const svgNS = "http://www.w3.org/2000/svg";
@@ -7,94 +7,13 @@ const svgNS = "http://www.w3.org/2000/svg";
 var palavra = "calopsita";
 var historicoDeLetras = new Array();
 var tentativas = 9;
-var acertos = new Array(palavra.length);
 var letra;
+//cada indice do array acertos representa uma letra da palavra secreta caso 0, falso a letra nao foi descoberta. caso 1 a letra foi descoberta 
+var acertos = new Array(palavra.length);
 for (var i = 0; i < acertos.length; i++) {
     acertos[i] = 0;
 }
 
-function verificaHistorico(letra){
-
-	var resultado = false;
-
-	for(var i=0; i < historicoDeLetras.length; i++){
-		if(historicoDeLetras[i] == letra){
-			resultado = !resultado;
-			console.log("achou!");
-			break;
-		}
-	}
-	historicoDeLetras.push(letra);
-
-	return resultado;
-}
-
-function comparar(letra) {
-
-    var acertou = false;
-    var ganhou = true;
-	var botao = document.getElementById(`tecla-${letra}`);
-
-	console.log(historicoDeLetras);
-
-	if(!verificaHistorico(letra)){
-		botao.classList.toggle("tecla-desativada");
-		for (i = 0; i < palavra.length; i++) {
-			if (palavra[i] == letra) {
-				acertos[i] = 1;
-				acertou = true;
-			}
-		}
-		if (!acertou) {
-			tentativas--;
-			switch(tentativas){
-
-				case 8:
-					desenhaSegundaLinha();
-					break;
-
-				case 7:
-					desenhaTerceiraLinha();
-					break;
-
-				case 6:
-					desenhaQuartaLinha();
-					break;
-
-				case 5:
-					desenhaCabeca();
-					break;
-
-				case 4:
-					desenhaTronco();
-					break;
-
-				case 3:
-					desenhaPernaDireita();
-					break;
-
-				case 2:
-					desenhaPernaEsquerda();
-					break;
-				case 1:
-					desenhaBracoDireito();
-					break;
-
-				case 0:
-					desenhaBracoEsquerdo();
-					break;
-			}
-		}
-		for (i = 0; i < acertos.length; i++) {
-			if (acertos[i] != 1) {
-				ganhou = false;
-			}
-		}
-	}else{
-		ganhou = !ganhou;
-	}
-    return ganhou;
-}
 
 function desenhaLinhaBase(){
 	const primeiraLinha = document.createElementNS(svgNS,"line");
@@ -228,3 +147,96 @@ function larguraMaximaForca(){
 }
 
 desenhaLinhaBase();
+
+function desenhar(){
+
+switch(tentativas){
+
+	case 8:
+		desenhaSegundaLinha();
+		break;
+
+	case 7:
+		desenhaTerceiraLinha();
+		break;
+
+	case 6:
+		desenhaQuartaLinha();
+		break;
+
+	case 5:
+		desenhaCabeca();
+		break;
+
+	case 4:
+		desenhaTronco();
+		break;
+
+	case 3:
+		desenhaPernaDireita();
+		break;
+
+	case 2:
+		desenhaPernaEsquerda();
+		break;
+	case 1:
+		desenhaBracoDireito();
+		break;
+
+	case 0:
+		desenhaBracoEsquerdo();
+		break;
+}
+}
+
+function verificaHistorico(letra){
+
+	var resultado = false;
+	var temNoHistorico = false;
+
+	for(var i=0; i < historicoDeLetras.length; i++){
+		if(historicoDeLetras[i] == letra){
+			resultado = !resultado;
+			temNoHistorico = !temNoHistorico;
+			break;
+		}
+	}
+
+	if(!temNoHistorico){
+		historicoDeLetras.push(letra);
+	}
+	console.log(historicoDeLetras);
+
+	return resultado;
+}
+
+function comparar(letra) {
+
+    var acertou = false;
+    var ganhou = true;
+	var botao = document.getElementById(`tecla-${letra}`);
+
+	if(!verificaHistorico(letra)){
+
+		botao.classList.toggle("tecla-desativada");
+
+		for (i = 0; i < palavra.length; i++) {
+			if (palavra[i] == letra) {
+				acertos[i] = 1;
+				acertou = true;
+			}
+		}
+		if (!acertou) {
+			tentativas--;
+			desenhar();
+		}
+		for (i = 0; i < acertos.length; i++) {
+			if (acertos[i] != 1) {
+				ganhou = false;
+			}
+		}
+	}else{
+		ganhou = !ganhou;
+	}
+    return ganhou;
+}
