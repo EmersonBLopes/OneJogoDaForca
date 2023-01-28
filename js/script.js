@@ -4,10 +4,13 @@ const backgroundColor = "#F3F5FC";
 var telaForca = document.getElementById("quadro-forca");
 const svgNS = "http://www.w3.org/2000/svg";
 
-var palavra = "calopsita";
+var telaPalavra = document.getElementById("quadro-letras");
+
+var palavra = "Alura";
 var historicoDeLetras = new Array();
 var tentativas = 9;
 var letra;
+
 //cada indice do array acertos representa uma letra da palavra secreta caso 0, falso a letra nao foi descoberta. caso 1 a letra foi descoberta 
 var acertos = new Array(palavra.length);
 for (var i = 0; i < acertos.length; i++) {
@@ -187,6 +190,11 @@ switch(tentativas){
 		desenhaBracoEsquerdo();
 		break;
 }
+
+}
+
+function escreveLetra(){
+
 }
 
 function verificaHistorico(letra){
@@ -205,7 +213,6 @@ function verificaHistorico(letra){
 	if(!temNoHistorico){
 		historicoDeLetras.push(letra);
 	}
-	console.log(historicoDeLetras);
 
 	return resultado;
 }
@@ -229,6 +236,8 @@ function comparar(letra) {
 		if (!acertou) {
 			tentativas--;
 			desenhar();
+		}else{
+			escreveLetra();
 		}
 		for (i = 0; i < acertos.length; i++) {
 			if (acertos[i] != 1) {

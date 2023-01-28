@@ -1,0 +1,13 @@
+.home__principal{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.principal__botoes{
+	display:flex;
+	flex-direction:column;
+}
+
