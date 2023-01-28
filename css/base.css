@@ -2,14 +2,19 @@ body{
 	background:var(--background-color);
 }
 
+.cabecalho{
+	height:11vh;
+}
+
 .logo{
 	position:absolute;
 	top:40px;
 	left:40px;
 }
+
 .botao{
 	font-size:1rem;
-	width:317px;
+  width:317px; 
 	height:105px;
 	border:none;
 	border-radius:24px;
@@ -26,19 +31,4 @@ body{
 	background:transparent;
 	color:var(--main-color);
 	border:1px var(--main-color) solid;
-}
-
-@media(max-width:768px){
-
-	.botao-secundario{
-		height:67px;
-	}
-}
-
-@media(max-width:375px){
-
-	.botao-primario{
-		margin-bottom: 17px;
-	}
-
 }
