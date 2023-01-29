@@ -225,7 +225,7 @@ function comparar(letra) {
 
 	if(!verificaHistorico(letra)){
 
-		botao.classList.toggle("tecla-desativada");
+		botao.classList.toggle("tecla_desativada");
 
 		for (i = 0; i < palavra.length; i++) {
 			if (palavra[i] == letra) {
