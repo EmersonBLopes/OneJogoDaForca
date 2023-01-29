@@ -5,15 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Jogo da forca</title>
 		<link rel="stylesheet" href="./../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
 		<link rel="stylesheet" href="./../css/jogo.css"/>
 		<script src="./../js/script.js" defer></script>
 	</head>
 	<body>
-		<header>
+    <header class="cabecalho">
 			<a href="./../index.html"><img src="./../img/logo.svg" alt="Logo da Alura" class="logo"/></a>
 		</header>
-		<main class="principal">
-			<div class="conteudo">
+		<main class="jogo__principal">
+			<div class="jogo__conteudo">
 				<div class="quadro">
 					<svg class="forca" id="quadro-forca"></svg>
 					<svg class="letras-palavra" id="quadro-letras"></svg>
@@ -47,8 +48,8 @@
 					<button class="tecla-virtual" id="tecla-z" onclick="comparar('z')">Z</button>
 				</div>
 				<div class="botoes">
-					<button class="botao" id="botao-primario">Novo Jogo</button>
-					<button class="botao" id="botao-secundario">Desistir</button>
+					<button class="botao botao-primario" >Novo Jogo</button>
+          <button class="botao botao-secundario">Desistir</button>
 				</div>
 			</div>
 		</main>

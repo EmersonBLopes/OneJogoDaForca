@@ -1,16 +1,5 @@
-body{
-	background:var(--background-color);
-}
+.jogo__principal{
 
-.cabecalho{
-	height:11vh;
-}
-
-.logo{
-	margin: 40px 40px 0;
-}
-
-.principal{
 	display:flex;
 	flex-direction:column;
 	height:85vh;
@@ -18,7 +7,7 @@ body{
 	justify-content:center;
 } 
 
-.conteudo{
+.jogo__conteudo{
 	height:100%;
 	width:100%;
 	display:flex;
@@ -46,6 +35,7 @@ body{
 	 -ms-overflow-style:none;/*IE and Edge*/
 	 scrollbar-width:none;/*Fireforx*/
 	 width:100%;
+   overflow-y:hidden;
 	 display:flex;
 	 flex-wrap:wrap;
 	 align-items:center;
@@ -75,32 +65,21 @@ body{
  }
 
 .botoes{
-	width:90%;
+	width:100%;
+  max-width:740px;
 	align-self:center;
 	display:flex;
 	justify-content:center;
 }
 
 .botao{
-	font-size:1rem;
 	width:100%;
 	max-width:332px;
 	height:67px;
-	border:none;
-	border-radius:24px;
-	cursor:pointer;
 }
 
-#botao-primario{
-	color:#fff;
-	background:var(--main-color);
-	margin-right:24px;
-}
-
-#botao-secundario{
-	background:transparent;
-	color:var(--main-color);
-	border:1px var(--main-color) solid;
+.botao-primario{
+  margin-right:15px;
 }
 
 @media(max-width:840px){
@@ -126,4 +105,9 @@ body{
 		height:50px;
 	}
 	
+  .botoes{
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+  }
 }
