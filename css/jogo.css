@@ -2,29 +2,22 @@
 
 	display:flex;
 	flex-direction:column;
-	height:85vh;
+	height:89vh;
 	align-items:center;
-	justify-content:center;
+	justify-content:space-around;
 } 
-
-.jogo__conteudo{
-	height:100%;
-	width:100%;
-	display:flex;
-	flex-direction:column;
-	justify-content:space-between;
-}
 
 .quadro{
 	align-self:center;
 	width:90%;
+  height:50%;
 	max-width:626px;
 	display:flex;
 	flex-direction:column;
  }
 
  .forca{
-	 height:40vh;
+	 height:80%;
  }
 
  .letras-palavra{
@@ -78,7 +71,7 @@
 	height:67px;
 }
 
-.botao-primario{
+.botao_primario{
   margin-right:15px;
 }
 
@@ -109,5 +102,10 @@
     width:100%;
     flex-direction:column;
     align-items:center;
+  }
+
+  .botao_primario{
+    
+    margin-right:0;
   }
 }

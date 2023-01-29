@@ -6,7 +6,7 @@ body{
 	height:11vh;
 }
 
-.logo{
+.cabecalho__logo{
 	position:absolute;
 	top:40px;
 	left:40px;
@@ -21,13 +21,13 @@ body{
 	cursor:pointer;
 }
 
-.botao-primario{
+.botao_primario{
 	color:#fff;
 	background:var(--main-color);
 	margin-bottom:29px;
 }
 
-.botao-secundario{
+.botao_secundario{
 	background:transparent;
 	color:var(--main-color);
 	border:1px var(--main-color) solid;
