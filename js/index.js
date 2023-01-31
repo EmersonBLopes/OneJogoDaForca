@@ -9,11 +9,23 @@ const svgNS = "http://www.w3.org/2000/svg";
 var telaPalavra = document.getElementById("quadro-letras");
 
   var palavra = new Palavra();
+  //transforma o html collection em Array
+  var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual"));
   
-  palavra.comparar('b')
-  
+  //adiciona um evento listerner para cada tecla do teclado virtual 
+  tecladoVirtual.forEach((tecla)=>{
+    tecla.addEventListener("click", (evento)=>{
+      var teclaClicada = evento.srcElement;
+      palavra.comparar(teclaClicada);
+    })
+  })
 
-//cada indice do array acertos representa uma letra da palavra secreta caso 0, falso a letra nao foi descoberta. caso 1 a letra foi descoberta 
+  //escuta entradas do teclado
+  document.addEventListener("keydown",(evento)=>{
+    var tecla = document.querySelector(`[data-letra="${evento.key}"]`);
+    palavra.comparar(tecla);
+  });
+  
 function desenhaLinhaBase(){
 	const primeiraLinha = document.createElementNS(svgNS,"line");
 	primeiraLinha.setAttributeNS(null,"x1",larguraMaximaForca()-larguraMaximaForca()*0.95);

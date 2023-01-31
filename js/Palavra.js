@@ -23,11 +23,10 @@ export default class Palavra{
     this.#acertos[index] = 1;
   }
 
-  #verificaHistorico(letra){
+  #verificaHistorico(tecla,letra){
 
     //variavel que armazena o resultado da consulta
     var resultado = false;
-    var botao = document.getElementById(`tecla-${letra}`);
 
     //verifica se se a letra já foi usada
     for(var i=0; i < this.#historicoDeLetras.length; i++){
@@ -43,7 +42,7 @@ export default class Palavra{
       this.#historicoDeLetras.push(letra);
 
       //altera a classe do botão para desativado
-      botao.classList.toggle("tecla_desativada");
+      tecla.classList.toggle("tecla_desativada");
       
     }
 
@@ -75,20 +74,22 @@ export default class Palavra{
       return true;
     }
 
-    comparar(letra) {
+    //recebe um a tecla como parâmetro
+    comparar(tecla) {
 
+      var letra = tecla.dataset.letra;
       var acertou;
       var ganhou;
 
     //verifica se a letra consta no histórico se falso entra dentro do if
-    if(!this.#verificaHistorico(letra)){
+    if(!this.#verificaHistorico(tecla,letra)){
       
       //verifica se a letra consta na palavra;
       acertou = this.#verificaLetraPalavra(letra);
       
       if (!acertou) {
         this.#tentativas--;
-        desenhar();
+        //desenhar();
       }else{
         //escreveLetra();
       }
