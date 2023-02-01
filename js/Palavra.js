@@ -101,7 +101,7 @@ export default class Palavra{
       
       if (!acertou) {
         this.#tentativas--;
-        //desenhar();
+        this.#desenhistaForca.desenhar(this.#tentativas);
       }else{
         //escreveLetra();
       }

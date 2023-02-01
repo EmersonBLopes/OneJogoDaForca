@@ -135,38 +135,38 @@ export default class DesenhoForca extends Desenho{
           break;
 
         case 8:
-          desenhaSegundaLinha();
+          this.#desenhaSegundaLinha();
           break;
 
         case 7:
-          desenhaTerceiraLinha();
+          this.#desenhaTerceiraLinha();
           break;
 
         case 6:
-          desenhaQuartaLinha();
+          this.#desenhaQuartaLinha();
           break;
 
         case 5:
-          desenhaCabeca();
+          this.#desenhaCabeca();
           break;
 
         case 4:
-          desenhaTronco();
+          this.#desenhaTronco();
           break;
 
         case 3:
-          desenhaPernaDireita();
+          this.#desenhaPernaDireita();
           break;
 
         case 2:
-          desenhaPernaEsquerda();
+          this.#desenhaPernaEsquerda();
           break;
         case 1:
-          desenhaBracoDireito();
+          this.#desenhaBracoDireito();
           break;
 
         case 0:
-          desenhaBracoEsquerdo();
+          this.#desenhaBracoEsquerdo();
           break;
       }
 
