@@ -1,3 +1,5 @@
+import DesenhoForca from "./DesenhoForca.js"
+
 export default class Palavra{
 
   #palavras;
@@ -6,6 +8,7 @@ export default class Palavra{
   #acertos;
   #letra;
   #historicoDeLetras;
+  #desenhistaForca;
 
   constructor(){
     this.#palavras = new Array();
@@ -16,6 +19,8 @@ export default class Palavra{
         this.#acertos[i] = 0;
     }
     this.#historicoDeLetras = Array();
+    this.#desenhistaForca = new DesenhoForca();
+    this.#desenhistaForca.desenhar(this.#tentativas);
   }
 
   setAcertos(index){
@@ -42,8 +47,11 @@ export default class Palavra{
       this.#historicoDeLetras.push(letra);
 
       //altera a classe do botão para desativado
-      tecla.classList.toggle("tecla_desativada");
-      
+      try{
+        tecla.classList.toggle("tecla_desativada");
+      }catch{
+
+      }
     }
 
     return resultado;
@@ -77,7 +85,11 @@ export default class Palavra{
     //recebe um a tecla como parâmetro
     comparar(tecla) {
 
-      var letra = tecla.dataset.letra;
+      var letra
+      try{
+        letra = tecla.dataset.letra;
+      }catch{
+      }
       var acertou;
       var ganhou;
 
