@@ -1,4 +1,4 @@
-import DesenhoForca from "./DesenhoForca.js"
+import Forca from "./Forca.js"
 
 export default class Palavra{
 
@@ -19,8 +19,8 @@ export default class Palavra{
         this.#acertos[i] = 0;
     }
     this.#historicoDeLetras = Array();
-    this.#desenhistaForca = new DesenhoForca();
-    this.#desenhistaForca.desenhar(this.#tentativas);
+    this.#desenhistaForca = new Forca();
+    this.#desenhistaForca.controlaDesenho(this.#tentativas);
   }
 
   setAcertos(index){
@@ -101,7 +101,7 @@ export default class Palavra{
       
       if (!acertou) {
         this.#tentativas--;
-        this.#desenhistaForca.desenhar(this.#tentativas);
+        this.#desenhistaForca.controlaDesenho(this.#tentativas);
       }else{
         //escreveLetra();
       }
