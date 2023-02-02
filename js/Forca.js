@@ -1,6 +1,5 @@
 import Desenho from "./Desenho.js";
 
-
 export default class Forca{
 
   #desenhista;
@@ -55,7 +54,6 @@ export default class Forca{
             this.#desenhista.alturaMaxima*0.3,
             this.#desenhista.alturaMaxima*0.08
           );
-          this.desenhaCabeca();
           break;
 
         case 4:
