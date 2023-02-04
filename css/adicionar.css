@@ -92,3 +92,14 @@
 		margin: 0 0 24px 0;
 	}
 }
+
+@media screen and (max-width:375px){
+
+  .entrada-de-texto_erro::placeholder{
+    font-size:20px;
+  }
+  
+  .entrada-de-texto_sucesso::placeholder{
+    font-size:20px;
+  }
+}
