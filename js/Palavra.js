@@ -1,4 +1,5 @@
-import Forca from "./Forca.js"
+import Forca from "./canva/Forca.js"
+import Letras from "./canva/Letras.js";
 
 export default class Palavra{
 
@@ -9,6 +10,7 @@ export default class Palavra{
   #letra;
   #historicoDeLetras;
   #desenhistaForca;
+  #desenhistaLetra;
 
   constructor(){
     this.#palavras = new Array();
@@ -21,6 +23,8 @@ export default class Palavra{
     this.#historicoDeLetras = Array();
     this.#desenhistaForca = new Forca();
     this.#desenhistaForca.controlaDesenho(this.#tentativas);
+    this.#desenhistaLetra = new Letras(this.#palavraAtual.length);
+    this.#desenhistaLetra.desenhaEspacoLetras();
   }
 
   setAcertos(index){

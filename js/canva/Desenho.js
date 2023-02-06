@@ -14,7 +14,7 @@ export default class Desenho{
   
   get alturaMaxima(){ return this.#tela.getBoundingClientRect().height; }
 
-  get larguraMaxima(){ return this.#tela.getBoundingClientRect().width  }
+  get larguraMaxima(){ return this.#tela.getBoundingClientRect().width; }
 
   desenharTraco(x1,x2,y1,y2){
 
