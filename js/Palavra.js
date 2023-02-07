@@ -14,7 +14,7 @@ export default class Palavra{
 
   constructor(){
     this.#palavras = new Array();
-    this.#palavraAtual = "Alura";
+    this.#palavraAtual = "alura";
     this.#tentativas = 9;
     this.#acertos = new Array(this.#palavraAtual.length);
     for (var i = 0; i < this.#acertos.length; i++) {
