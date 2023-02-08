@@ -10,6 +10,7 @@ export default class Letras{
     this.#numeroDeLetras = numeroDeLetras;
   }
 
+  //responsavel por calcular o tamanho da palavra, adiciona o somatório de cada palavra e margem e retorna dentro de uma variavel
   #calculaLarguraPalavra(porcentagemTraco,porcentagemMargem){
     var larguraPalavra = 0;
     for(var i = 1; i <= this.#numeroDeLetras;i++){
@@ -41,7 +42,6 @@ export default class Letras{
     }else{
       //sera modificado...
       x1 = (this.#desenhistaLetra.larguraMaxima-this.#calculaLarguraPalavra(0.10,0.15))/2;
-      console.log(x1)
       for(var i = 0; i < this.#numeroDeLetras; i++){
         this.#desenhistaLetra.desenharTraco(x1,x1+this.#desenhistaLetra.larguraMaxima*0.10,y,y);
         //margin a direita de cada traco
