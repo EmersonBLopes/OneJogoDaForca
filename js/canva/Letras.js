@@ -14,9 +14,9 @@ export default class Letras{
     var larguraPalavra = 0;
     for(var i = 1; i <= this.#numeroDeLetras;i++){
       if(i != this.#numeroDeLetras){
-        larguraPalavra += 27;
+        larguraPalavra += this.#desenhistaLetra.larguraMaxima*porcentagemTraco + this.#desenhistaLetra.larguraMaxima*porcentagemMargem - this.#desenhistaLetra.larguraMaxima*porcentagemTraco;
       }else{
-        larguraPalavra += this.#desenhistaLetra.larguraMaxima*porcentagemTraco
+        larguraPalavra += this.#desenhistaLetra.larguraMaxima*porcentagemTraco;
       }
     }
 
