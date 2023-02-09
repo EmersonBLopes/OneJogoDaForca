@@ -39,4 +39,18 @@ export default class Desenho{
 
     this.#tela.appendChild(circulo);
   }
+
+  desenharLetra(caracter,x){
+    const y = this.alturaMaxima*0.62; 
+    const fontSize = 45;
+
+    const letra = document.createElementNS(this.#svgNS,"text");
+    letra.setAttributeNS(null,"x",x);
+    letra.setAttributeNS(null,"y",y);
+    letra.setAttributeNS(null,"font-size",fontSize);
+    letra.setAttributeNS(null,"fill",this.#mainColor);
+    letra.innerHTML = caracter.toUpperCase();
+
+    this.#tela.appendChild(letra);
+  }
 }

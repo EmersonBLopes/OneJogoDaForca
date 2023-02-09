@@ -107,7 +107,7 @@ export default class Palavra{
         this.#tentativas--;
         this.#desenhistaForca.controlaDesenho(this.#tentativas);
       }else{
-        //escreveLetra();
+        this.#desenhistaLetra.desenhaLetra("a",[0,4]);
       }
     }
     ganhou = this.#verificaGanhou();
