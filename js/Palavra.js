@@ -14,7 +14,7 @@ export default class Palavra{
 
   constructor(){
     this.#palavras = new Array();
-    this.#palavraAtual = "alura";
+    this.#palavraAtual = "cachorro";
     this.#tentativas = 9;
     this.#acertos = new Array(this.#palavraAtual.length);
     for (var i = 0; i < this.#acertos.length; i++) {
@@ -73,7 +73,18 @@ export default class Palavra{
       return false;
     }
 
-    //verifica se todas as letras foram acertadas
+//retorna o index das letras encontradas
+#buscaIndex(letra){
+  let indexEncontrados = new Array(); 
+  for(var i = 0; i<this.#palavraAtual.length; i++){
+    if(this.#palavraAtual[i] == letra){
+      indexEncontrados.push(i);
+    }
+  }
+  console.log(indexEncontrados);
+  return indexEncontrados;
+}
+//verifica se todas as letras foram acertadas
 #verificaGanhou(){
 
       //confere todos os acertos
@@ -107,7 +118,7 @@ export default class Palavra{
         this.#tentativas--;
         this.#desenhistaForca.controlaDesenho(this.#tentativas);
       }else{
-        this.#desenhistaLetra.desenhaLetra("a",[0,4]);
+        this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
       }
     }
     ganhou = this.#verificaGanhou();
