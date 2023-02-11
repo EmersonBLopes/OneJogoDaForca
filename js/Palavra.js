@@ -81,7 +81,6 @@ export default class Palavra{
       indexEncontrados.push(i);
     }
   }
-  console.log(indexEncontrados);
   return indexEncontrados;
 }
 //verifica se todas as letras foram acertadas

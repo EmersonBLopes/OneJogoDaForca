@@ -33,7 +33,6 @@ export default class Letras{
     const y = this.#desenhistaLetra.alturaMaxima*0.75;
     
     larguraPalavra = 0;
-    if(this.#desenhistaLetra.larguraMaxima < 373){
       //calcula o ponto de partida
       x1 = (this.#desenhistaLetra.larguraMaxima-this.#calculaLarguraPalavra(0.08,0.125))/2;
       for(var i = 0; i < this.#numeroDeLetras; i++){
@@ -41,17 +40,6 @@ export default class Letras{
         this.#posicoesDasLetras[i] = x1;
         //margin a direita de cada traco
         x1 += this.#desenhistaLetra.larguraMaxima*0.125;
-      }
-    }else{
-      //calcula o ponto de partida
-      x1 = (this.#desenhistaLetra.larguraMaxima-this.#calculaLarguraPalavra(0.10,0.15))/2;
-      for(var i = 0; i < this.#numeroDeLetras; i++){
-
-        this.#posicoesDasLetras[i] = x1;
-        this.#desenhistaLetra.desenharTraco(x1,x1+this.#desenhistaLetra.larguraMaxima*0.10,y,y);
-        //margin a direita de cada traco
-        x1 += this.#desenhistaLetra.larguraMaxima*0.15;
-      }
     }
   }
 

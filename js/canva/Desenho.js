@@ -42,7 +42,16 @@ export default class Desenho{
 
   desenharLetra(caracter,x){
     const y = this.alturaMaxima*0.62; 
-    const fontSize = 45;
+    let fontSize;
+
+    //define proporções com base no tamanho de tela
+    if(this.larguraMaxima < 426){
+      fontSize = 32;
+      x += this.larguraMaxima * 0.01;
+    }else{
+      fontSize = 45;
+      x += this.larguraMaxima * 0.0150;
+    }
 
     const letra = document.createElementNS(this.#svgNS,"text");
     letra.setAttributeNS(null,"x",x);
