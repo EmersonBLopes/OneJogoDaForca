@@ -43,7 +43,7 @@
 }
 
 .entrada-de-texto_erro::placeholder{
-	color:red;
+	color:var(--main-color);
 }
 
 .entrada-de-texto_sucesso{
@@ -54,9 +54,8 @@
   border:none;
   background:transparent;
 }
-
 .entrada-de-texto_sucesso::placeholder{
-	color:green;
+	color:var(--main-color);
 }
 
 .entrada-de-texto:focus{
