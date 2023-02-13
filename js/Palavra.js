@@ -12,9 +12,13 @@ export default class Palavra{
   #desenhistaForca;
   #desenhistaLetra;
 
+  #sorteiaPalavra(){
+    return this.#palavras[Math.floor(Math.random()*5)];
+  }
+
   constructor(){
-    this.#palavras = new Array();
-    this.#palavraAtual = "cachorro";
+    this.#palavras = ["gato","papagaio","casa","cachorro","batata","careca"];
+    this.#palavraAtual = this.#sorteiaPalavra();
     this.#tentativas = 9;
     this.#acertos = new Array(this.#palavraAtual.length);
     for (var i = 0; i < this.#acertos.length; i++) {
