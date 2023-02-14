@@ -10,14 +10,18 @@ var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual")
 tecladoVirtual.forEach((tecla)=>{
   tecla.addEventListener("click", (evento)=>{
     var teclaClicada = evento.srcElement;
-    palavra.comparar(teclaClicada);
+    if(palavra.comparar(teclaClicada)){
+      console.log("ganhou!")
+    };
   })
 })
 
 //escuta entradas do teclado
 document.addEventListener("keydown",(evento)=>{
   var tecla = document.querySelector(`[data-letra="${evento.key}"]`);
-  palavra.comparar(tecla);
+  if(palavra.comparar(tecla)){
+      console.log("ganhou!")
+  };
 });
 
 botaoDesistir.addEventListener("click",()=>{

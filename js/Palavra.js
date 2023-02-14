@@ -67,15 +67,15 @@ export default class Palavra{
 
     //verifica se a letra existe na palavra, caso exista retorna true 
 #verificaLetraPalavra(letra){
-
-      for (var i = 0; i < this.#palavraAtual.length; i++) {
-        if (this.#palavraAtual[i] == letra) {
-          this.setAcertos(i);
-          return true;
-        }
-      }
-      return false;
+  let resposta = false;
+  for (var i = 0; i < this.#palavraAtual.length; i++) {
+    if (this.#palavraAtual[i] == letra) {
+      this.setAcertos(i);
+      resposta = true;
     }
+  }
+  return resposta;
+}
 
 //retorna o index das letras encontradas
 #buscaIndex(letra){
@@ -89,7 +89,6 @@ export default class Palavra{
 }
 //verifica se todas as letras foram acertadas
 #verificaGanhou(){
-
       //confere todos os acertos
       for (var i = 0; i < this.#acertos.length; i++) {
         if (this.#acertos[i] != 1) {
