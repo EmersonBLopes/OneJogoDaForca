@@ -6,6 +6,12 @@ var palavra = new Palavra();
 //transforma o html collection em Array
 var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual"));
 
+function resetaTeclas(){
+    tecladoVirtual.forEach((tecla)=>{
+      tecla.classList.remove("tecla_desativada");
+    })
+}
+
 //adiciona um evento listerner para cada tecla do teclado virtual 
 tecladoVirtual.forEach((tecla)=>{
   tecla.addEventListener("click", (evento)=>{
@@ -14,7 +20,7 @@ tecladoVirtual.forEach((tecla)=>{
     //desativa tecla
     teclaClicada.classList.add("tecla_desativada");
     if(palavra.comparar(letra)){
-      teclaClicada.classList.remove("tecla_desativada");
+      resetaTeclas();
       console.log("ganhou!")
     };
   })
@@ -27,7 +33,7 @@ document.addEventListener("keydown",(evento)=>{
   //desativa tecla
   tecla.classList.add("tecla_desativada");
   if(palavra.comparar(letra)){
-      tecla.classList.remove("tecla_desativada");
+      resetaTeclas();
       console.log("ganhou!")
   };
 });
