@@ -99,6 +99,10 @@ export default class Forca{
             this.#desenhista.alturaMaxima*0.65
           );
           break;
+
+        case -1:
+          this.#desenhista.limpaQuadro();
+          break;
       }
 
   }

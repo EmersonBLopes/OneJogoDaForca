@@ -12,6 +12,10 @@ export default class Letras{
     this.#posicoesDasLetras = new Array();
   }
 
+  set numeroDeLetras(numero){
+    this.#numeroDeLetras = numero;
+  }
+
   //responsavel por calcular o tamanho da palavra, adiciona o somatório de cada palavra e margem e retorna dentro de uma variavel
   #calculaLarguraPalavra(porcentagemTraco,porcentagemMargem){
     var larguraPalavra = 0;
@@ -49,4 +53,7 @@ export default class Letras{
     }
   }
 
+  apagarQuadro(){
+    this.#desenhistaLetra.limpaQuadro();
+  }
 }

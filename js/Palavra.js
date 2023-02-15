@@ -5,6 +5,7 @@ export default class Palavra{
 
   #palavras;
   #palavraAtual;
+  #palavraAtualID;
   #tentativas;
   #acertos;
   #letra;
@@ -13,7 +14,8 @@ export default class Palavra{
   #desenhistaLetra;
 
   #sorteiaPalavra(){
-    return this.#palavras[Math.floor(Math.random()*5)];
+    this.#palavraAtualID = Math.floor(Math.random()*this.#palavras.length);
+    return this.#palavras[this.#palavraAtualID];
   }
 
   constructor(){
@@ -26,8 +28,8 @@ export default class Palavra{
     }
     this.#historicoDeLetras = Array();
     this.#desenhistaForca = new Forca();
-    this.#desenhistaForca.controlaDesenho(this.#tentativas);
     this.#desenhistaLetra = new Letras(this.#palavraAtual.length);
+    this.#desenhistaForca.controlaDesenho(this.#tentativas);
     this.#desenhistaLetra.desenhaEspacoLetras();
   }
 
@@ -36,34 +38,25 @@ export default class Palavra{
     this.#acertos[index] = 1;
   }
 
-  #verificaHistorico(tecla,letra){
+#verificaHistorico(letra){
 
-    //variavel que armazena o resultado da consulta
-    var resultado = false;
+  //variavel que armazena o resultado da consulta
+  var resultado = false;
 
-    //verifica se se a letra já foi usada
-    for(var i=0; i < this.#historicoDeLetras.length; i++){
-      if(this.#historicoDeLetras[i] == letra){
-        resultado = !resultado;
-        break;
-      }
+  //verifica se se a letra já foi usada
+  for(var i=0; i < this.#historicoDeLetras.length; i++){
+    if(this.#historicoDeLetras[i] == letra){
+      resultado = !resultado;
+      break;
     }
-
-    //caso a letra não tenha sido usada a adicionara ao histórico.
-    if(!resultado){
-      
-      this.#historicoDeLetras.push(letra);
-
-      //altera a classe do botão para desativado
-      try{
-        tecla.classList.toggle("tecla_desativada");
-      }catch{
-
-      }
-    }
-
-    return resultado;
-    }
+  };
+  //caso a letra não tenha sido usada a adicionara ao histórico.
+  if(!resultado){
+  
+    this.#historicoDeLetras.push(letra);
+  }
+  return resultado;
+}
 
     //verifica se a letra existe na palavra, caso exista retorna true 
 #verificaLetraPalavra(letra){
@@ -99,31 +92,43 @@ export default class Palavra{
       return true;
     }
 
-    //recebe um a tecla como parâmetro
-    comparar(tecla) {
+//recebe um a tecla como parâmetro
+comparar(letra) {
+  var acertou;
+  var ganhou;
 
-      var letra
-      try{
-        letra = tecla.dataset.letra;
-      }catch{
-      }
-      var acertou;
-      var ganhou;
+  //verifica se a letra consta no histórico se falso entra dentro do if
+  if(!this.#verificaHistorico(letra)){
+    
+    //verifica se a letra consta na palavra;
+    acertou = this.#verificaLetraPalavra(letra);
+    
+    if (!acertou) {
+      this.#tentativas--;
+      this.#desenhistaForca.controlaDesenho(this.#tentativas);
+    }else{
+      this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
+    }
+  }
+  ganhou = this.#verificaGanhou();
+  if(ganhou){
+    setTimeout(()=>{
+    this.#desenhistaForca.controlaDesenho(-1);    
+    this.#desenhistaLetra.apagarQuadro();
+    this.#palavras.splice(this.#palavraAtualID,1);
+    this.#palavraAtual = this.#sorteiaPalavra();
+    this.#tentativas = 9;
+    this.#acertos = new Array(this.#palavraAtual.length);
+    for (var i = 0; i < this.#acertos.length; i++) {
+        this.#acertos[i] = 0;
+    }
+    this.#historicoDeLetras.splice(0)
+    this.#desenhistaLetra.numeroDeLetras =  this.#palavraAtual.length;
+    this.#desenhistaForca.controlaDesenho(this.#tentativas);
+    this.#desenhistaLetra.desenhaEspacoLetras();
+    },5000)
+  }
 
-    //verifica se a letra consta no histórico se falso entra dentro do if
-    if(!this.#verificaHistorico(tecla,letra)){
-      
-      //verifica se a letra consta na palavra;
-      acertou = this.#verificaLetraPalavra(letra);
-      
-      if (!acertou) {
-        this.#tentativas--;
-        this.#desenhistaForca.controlaDesenho(this.#tentativas);
-      }else{
-        this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
-      }
-    }
-    ganhou = this.#verificaGanhou();
-    return ganhou;
-    }
+  return ganhou
+}
 }

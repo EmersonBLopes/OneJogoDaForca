@@ -62,4 +62,10 @@ export default class Desenho{
 
     this.#tela.appendChild(letra);
   }
+
+  limpaQuadro(){
+    while(this.#tela.hasChildNodes()){
+      this.#tela.removeChild(this.#tela.firstChild);
+    }
+  }
 }

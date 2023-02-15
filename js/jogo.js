@@ -9,8 +9,12 @@ var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual")
 //adiciona um evento listerner para cada tecla do teclado virtual 
 tecladoVirtual.forEach((tecla)=>{
   tecla.addEventListener("click", (evento)=>{
-    var teclaClicada = evento.srcElement;
-    if(palavra.comparar(teclaClicada)){
+    let teclaClicada = evento.srcElement;
+    let letra = teclaClicada.dataset.letra;
+    //desativa tecla
+    teclaClicada.classList.add("tecla_desativada");
+    if(palavra.comparar(letra)){
+      teclaClicada.classList.remove("tecla_desativada");
       console.log("ganhou!")
     };
   })
@@ -18,8 +22,12 @@ tecladoVirtual.forEach((tecla)=>{
 
 //escuta entradas do teclado
 document.addEventListener("keydown",(evento)=>{
-  var tecla = document.querySelector(`[data-letra="${evento.key}"]`);
-  if(palavra.comparar(tecla)){
+  let tecla = document.querySelector(`[data-letra="${evento.key}"]`);
+  let letra = tecla.dataset.letra;
+  //desativa tecla
+  tecla.classList.add("tecla_desativada");
+  if(palavra.comparar(letra)){
+      tecla.classList.remove("tecla_desativada");
       console.log("ganhou!")
   };
 });
