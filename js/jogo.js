@@ -28,14 +28,16 @@ tecladoVirtual.forEach((tecla)=>{
 
 //escuta entradas do teclado
 document.addEventListener("keydown",(evento)=>{
-  let tecla = document.querySelector(`[data-letra="${evento.key}"]`);
-  let letra = tecla.dataset.letra;
-  //desativa tecla
-  tecla.classList.add("tecla_desativada");
-  if(palavra.comparar(letra)){
-      resetaTeclas();
-      console.log("ganhou!")
-  };
+  if(evento.keyCode >= 65 && evento.keyCode <= 90){
+    let tecla = document.querySelector(`[data-letra="${evento.key.toLowerCase()}"]`);
+    let letra = tecla.dataset.letra;
+    //desativa tecla
+    tecla.classList.add("tecla_desativada");
+    if(palavra.comparar(letra)){
+        resetaTeclas();
+        console.log("ganhou!")
+    };
+  }
 });
 
 botaoDesistir.addEventListener("click",()=>{
