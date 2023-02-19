@@ -5,7 +5,7 @@ export default class Palavra{
 
   #palavras;
   #palavraAtual;
-  #palavraAtualID;
+  #palavraAtualIndex;
   #tentativas;
   #acertos;
   #letra;
@@ -16,7 +16,7 @@ export default class Palavra{
   #sorteiaPalavra(){
     let palavraAtualIndex = Math.floor(Math.random()*this.#palavras.length);
     var palavraSorteada = this.#palavras[palavraAtualIndex];
-    this.#palavraAtualID = palavraAtualIndex;
+    this.#palavraAtualIndex = palavraAtualIndex;
     this.#palavraAtual = palavraSorteada.conteudo;
   }
 
@@ -24,7 +24,7 @@ export default class Palavra{
     this.#palavras = [{"ID":0,"conteudo":"gato"},{"ID":1,"conteudo":"papagaio"},{"ID":2,"conteudo":"casa"},{"ID":3,"conteudo":"cachorro"},{"ID":4,"conteudo":"batata"},{"ID":5,"conteudo":"careca"}];
     this.#sorteiaPalavra();
     this.#tentativas = 9;
-    this.#acertos = new Array();
+    this.#acertos = new Array(this.#palavraAtual.length);
     for (var i = 0; i < this.#acertos.length; i++) {
         this.#acertos[i] = 0;
     }
@@ -85,52 +85,57 @@ export default class Palavra{
 //verifica se todas as letras foram acertadas
 #verificaGanhou(){
       //confere todos os acertos
-      for (var i = 0; i < this.#acertos.length; i++) {
+
+      if(this.#acertos.length == 0) return false;
+
+      for (let i = 0; i < this.#acertos.length; i++) {
         if (this.#acertos[i] != 1) {
           return false;
         }
       }
-
       return true;
     }
 
-  //recebe um a tecla como parâmetro
-  comparar(letra) {
-    var acertou;
-    var ganhou;
-
-    //verifica se a letra consta no histórico se falso entra dentro do if
-    if(!this.#verificaHistorico(letra)){
-      
-      //verifica se a letra consta na palavra;
-      acertou = this.#verificaLetraPalavra(letra);
-      
-      if (!acertou) {
-        this.#tentativas--;
-        this.#desenhistaForca.controlaDesenho(this.#tentativas);
-      }else{
-        this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
-      }
-    }
-    ganhou = this.#verificaGanhou();
-    if(ganhou){
-      setTimeout(()=>{
-      this.#desenhistaForca.controlaDesenho(-1);    
-      this.#desenhistaLetra.apagarQuadro();
-      this.#palavras.splice(this.#palavraAtualID,1);
-      this.#sorteiaPalavra();
-      this.#tentativas = 9;
-      this.#acertos = new Array(this.#palavraAtual.length);
-      for (var i = 0; i < this.#acertos.length; i++) {
-          this.#acertos[i] = 0;
-      }
-      this.#historicoDeLetras.splice(0)
-      this.#desenhistaLetra.numeroDeLetras =  this.#palavraAtual.length;
-      this.#desenhistaForca.controlaDesenho(this.#tentativas);
-      this.#desenhistaLetra.desenhaEspacoLetras();
-      },5000)
-    }
-
-    return ganhou
+trocaPalavra(){
+  this.#desenhistaForca.controlaDesenho(-1);    
+  this.#desenhistaLetra.apagarQuadro();
+  this.#palavras.splice(this.#palavraAtualIndex,1);
+  this.#sorteiaPalavra();
+  this.#tentativas = 9;
+  this.#acertos = new Array(this.#palavraAtual.length);
+  for (var i = 0; i < this.#acertos.length; i++) {
+      this.#acertos[i] = 0;
   }
+  this.#historicoDeLetras.splice(0)
+  this.#desenhistaLetra.numeroDeLetras = this.#palavraAtual.length;
+  this.#desenhistaForca.controlaDesenho(this.#tentativas);
+  this.#desenhistaLetra.desenhaEspacoLetras();
+}
+
+  //recebe um a tecla como parâmetro
+comparar(letra) {
+  var acertou;
+  var ganhou;
+
+  //verifica se a letra consta no histórico se falso entra dentro do if
+  if(!this.#verificaHistorico(letra)){
+    
+    //verifica se a letra consta na palavra;
+    acertou = this.#verificaLetraPalavra(letra);
+    
+    if (!acertou) {
+      this.#tentativas--;
+      this.#desenhistaForca.controlaDesenho(this.#tentativas);
+    }else{
+      this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
+    }
+  }
+  ganhou = this.#verificaGanhou();
+  if(ganhou){
+    console.log("Você ganhou");
+    this.trocaPalavra();
+  }
+  
+  return ganhou
+}
 }

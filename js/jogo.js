@@ -1,5 +1,6 @@
 import Palavra from "./Palavra.js";
 
+const botaNovoJogo = document.querySelector("[data-novojogo]");
 const botaoDesistir = document.querySelector("[data-desistir]");
 var palavra = new Palavra();
 
@@ -21,7 +22,6 @@ tecladoVirtual.forEach((tecla)=>{
     teclaClicada.classList.add("tecla_desativada");
     if(palavra.comparar(letra)){
       resetaTeclas();
-      console.log("ganhou!")
     };
   })
 })
@@ -35,11 +35,16 @@ document.addEventListener("keydown",(evento)=>{
     tecla.classList.add("tecla_desativada");
     if(palavra.comparar(letra)){
         resetaTeclas();
-        console.log("ganhou!")
+        evento.preventDefault();
     };
   }
 });
 
+botaNovoJogo.addEventListener("click",()=>{
+  resetaTeclas();
+  palavra.trocaPalavra();
+});
+
 botaoDesistir.addEventListener("click",()=>{
   location.replace("https://emersonblopes.github.io/OneJogoDaForca/index.html");
-})
+});
