@@ -27,7 +27,7 @@ function tratarInput(input){
   if(codigoDeValidacao === 5){
 
     let requisicao = new Requisicao();
-    requisicao.adicionarPalavra(palavra);
+    requisicao.adicionarPalavra(palavra.toLowerCase());
   }
 
   setTimeout(() => {gerenciador.mensagemPadrao;},2000);

@@ -14,7 +14,6 @@ export default class Requisicao{
   }
 
   async adicionarPalavra(palavra){
-
     const resposta = await fetch(this.#URL+"solicitar",{
       method: "POST",
       headers:{
