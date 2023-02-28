@@ -1,4 +1,5 @@
 import GerenciadorDeMensagens from "./GerenciadorDeMensagens.js";
+import Requisicao from "../API/Requisicao.js";
 
 
 function validarPalavra(palavra){
@@ -22,6 +23,12 @@ function tratarInput(input){
   const codigoDeValidacao = validarPalavra(input.value);
 
   gerenciador.alteraMensagem(codigoDeValidacao);
+
+  if(codigoDeValidacao === 5){
+
+    let requisicao = new Requisicao();
+    requisicao.adicionarPalavra(palavra);
+  }
 
   setTimeout(() => {gerenciador.mensagemPadrao;},2000);
 }

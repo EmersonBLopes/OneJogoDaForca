@@ -12,4 +12,15 @@ export default class Requisicao{
 
     return JSON.parse(resposta);
   }
+
+  async adicionarPalavra(palavra){
+
+    const resposta = await fetch(this.#URL+"solicitar",{
+      method: "POST",
+      headers:{
+        "Content-Type" : "text/plain"
+      },
+      body: palavra,
+    });
+  }
 }
