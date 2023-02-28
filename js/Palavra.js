@@ -1,5 +1,6 @@
-import Forca from "./canva/Forca.js"
+import Forca from "./canva/Forca.js";
 import Letras from "./canva/Letras.js";
+import Requisicao from "./API/Requisicao.js";
 
 export default class Palavra{
 
@@ -12,6 +13,7 @@ export default class Palavra{
   #historicoDeLetras;
   #desenhistaForca;
   #desenhistaLetra;
+  #requisicao
 
   #sorteiaPalavra(){
     let palavraAtualIndex = Math.floor(Math.random()*this.#palavras.length);
@@ -21,7 +23,8 @@ export default class Palavra{
   }
 
   constructor(){
-    this.#palavras = [{"ID":0,"conteudo":"gato"},{"ID":1,"conteudo":"papagaio"},{"ID":2,"conteudo":"casa"},{"ID":3,"conteudo":"cachorro"},{"ID":4,"conteudo":"batata"},{"ID":5,"conteudo":"careca"}];
+    this.#requisicao = new Requisicao();
+    this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(2);
     this.#sorteiaPalavra();
     this.#tentativas = 9;
     this.#acertos = new Array(this.#palavraAtual.length);
@@ -132,7 +135,6 @@ comparar(letra) {
   }
   ganhou = this.#verificaGanhou();
   if(ganhou){
-    console.log("Você ganhou");
     this.trocaPalavra();
   }
   
