@@ -105,7 +105,7 @@ trocaPalavra(){
   //recebe um a tecla como parâmetro
 comparar(letra) {
   var acertou;
-  var ganhou;
+  var fimDeJogo;
 
   //verifica se a letra consta no histórico se falso entra dentro do if
   if(!this.#verificaHistorico(letra)){
@@ -120,8 +120,8 @@ comparar(letra) {
       this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
     }
   }
-  ganhou = this.#verificaGanhou();
-  if(ganhou){
+  fimDeJogo = this.#verificaGanhou();
+  if(fimDeJogo){
     alert("Você ganhou!");
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
@@ -143,6 +143,7 @@ comparar(letra) {
 
     },3000);
   }else if(this.#tentativas == 0){
+    fimDeJogo = true;
     alert("Você perdeu.");
 
     setTimeout(() => {
@@ -166,6 +167,6 @@ comparar(letra) {
     },3000);
   }
   
-  return ganhou
+  return fimDeJogo;
 }
 }
