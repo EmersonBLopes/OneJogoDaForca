@@ -122,6 +122,29 @@ comparar(letra) {
   }
   ganhou = this.#verificaGanhou();
   if(ganhou){
+    alert("Você ganhou!");
+    setTimeout(() => {
+      this.#desenhistaForca.controlaDesenho(-1);    
+        this.#desenhistaLetra.apagarQuadro();
+        this.#palavras.splice(this.#palavraAtualIndex,1);
+        if(this.#palavras.length == 1){
+          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(3);
+        }
+        this.#sorteiaPalavra();
+        this.#tentativas = 9;
+        this.#acertos = new Array(this.#palavraAtual.length);
+        for (var i = 0; i < this.#acertos.length; i++) {
+            this.#acertos[i] = 0;
+        }
+        this.#historicoDeLetras.splice(0)
+        this.#desenhistaLetra.numeroDeLetras = this.#palavraAtual.length;
+        this.#desenhistaForca.controlaDesenho(this.#tentativas);
+        this.#desenhistaLetra.desenhaEspacoLetras();
+
+    },3000);
+  }else if(this.#tentativas == 0){
+    alert("Você perdeu.");
+
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
         this.#desenhistaLetra.apagarQuadro();
