@@ -24,7 +24,7 @@ export default class Palavra{
 
   constructor(){
     this.#requisicao = new Requisicao();
-    this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(3);
+    this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
     this.#sorteiaPalavra();
     this.#tentativas = 9;
     this.#acertos = new Array(this.#palavraAtual.length);
@@ -151,7 +151,7 @@ comparar(letra) {
         this.#desenhistaLetra.apagarQuadro();
         this.#palavras.splice(this.#palavraAtualIndex,1);
         if(this.#palavras.length == 1){
-          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(3);
+          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
         }
         this.#sorteiaPalavra();
         this.#tentativas = 9;
