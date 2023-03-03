@@ -122,7 +122,7 @@ comparar(letra) {
   }
   fimDeJogo = this.#verificaGanhou();
   if(fimDeJogo){
-    alert("Você ganhou!");
+    setTimeout(() => alert("Você ganhou!"),1000);
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
         this.#desenhistaLetra.apagarQuadro();
@@ -144,7 +144,7 @@ comparar(letra) {
     },3000);
   }else if(this.#tentativas == 0){
     fimDeJogo = true;
-    alert("Você perdeu.");
+    setTimeout(() => alert("Você perdeu."),1000);
 
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
