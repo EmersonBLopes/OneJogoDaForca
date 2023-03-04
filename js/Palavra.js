@@ -128,7 +128,7 @@ comparar(letra) {
         this.#desenhistaLetra.apagarQuadro();
         this.#palavras.splice(this.#palavraAtualIndex,1);
         if(this.#palavras.length == 1){
-          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(3);
+          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
         }
         this.#sorteiaPalavra();
         this.#tentativas = 9;
@@ -145,7 +145,11 @@ comparar(letra) {
   }else if(this.#tentativas == 0){
     fimDeJogo = true;
     setTimeout(() => alert("Você perdeu."),1000);
-
+    for(let i = 0; i < this.#acertos.length; i++){
+      if(this.#acertos[i] != 1){
+        this.#desenhistaLetra.desenhaLetra(this.#palavraAtual[i],[i]);
+      }
+    }
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
         this.#desenhistaLetra.apagarQuadro();
