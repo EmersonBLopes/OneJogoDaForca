@@ -13,7 +13,9 @@ export default class Palavra{
   #historicoDeLetras;
   #desenhistaForca;
   #desenhistaLetra;
-  #requisicao
+  #requisicao;
+  #audioGanhou;
+  #audioPerdeu;
 
   #sorteiaPalavra(){
     let palavraAtualIndex = Math.floor(Math.random()*this.#palavras.length);
@@ -36,6 +38,8 @@ export default class Palavra{
     this.#desenhistaLetra = new Letras(this.#palavraAtual.length);
     this.#desenhistaForca.controlaDesenho(this.#tentativas);
     this.#desenhistaLetra.desenhaEspacoLetras();
+    this.#audioGanhou = new Audio("../assets/audio/ganhou.mp3");
+    this.#audioPerdeu = new Audio("../assets/audio/perdeu.mp3");
   }
 
   setAcertos(index){
@@ -122,6 +126,7 @@ comparar(letra) {
   }
   fimDeJogo = this.#verificaGanhou();
   if(fimDeJogo){
+    this.#audioGanhou.play();
     setTimeout(() => alert("Você ganhou!"),1000);
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
@@ -144,6 +149,7 @@ comparar(letra) {
     },3000);
   }else if(this.#tentativas == 0){
     fimDeJogo = true;
+    this.#audioPerdeu.play();
     setTimeout(() => alert("Você perdeu."),1000);
     for(let i = 0; i < this.#acertos.length; i++){
       if(this.#acertos[i] != 1){
