@@ -130,10 +130,13 @@ comparar(letra) {
     setTimeout(() => alert("Você ganhou!"),1000);
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
-        this.#desenhistaLetra.apagarQuadro();
-        this.#palavras.splice(this.#palavraAtualIndex,1);
+      this.#desenhistaLetra.apagarQuadro();
+      this.#palavras.splice(this.#palavraAtualIndex,1);
         if(this.#palavras.length == 1){
-          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
+          let novasPalavras = this.#requisicao.solicitarPalavrasAleatorias(20);
+          for(const palavra of novasPalavras){
+            this.#palavras.push(palavra);
+          }
         }
         this.#sorteiaPalavra();
         this.#tentativas = 9;
