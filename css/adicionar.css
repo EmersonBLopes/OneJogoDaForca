@@ -14,13 +14,14 @@
 	max-width:688px;
  }
 
-.primeira-secao-flex{
+.principal__primeira-secao{
 	width:100%;
+  font-size:32px;
 }
 
 .entrada-de-texto{
 	align-self:start;
-	font-size:32px;
+	font-size:1em;
 	color:var(--main-color);
 	width:100%;
 	height:48px;
@@ -30,12 +31,12 @@
 
 .entrada-de-texto::placeholder{
 	color:var(--main-color);
-	font-size:32px;
+	font-size:1em;
 }
 
 .entrada-de-texto_erro{
 	align-self:start;
-	font-size:2rem;
+	font-size:1em;
 	width:100%;
 	height:48px;
 	border:none;
@@ -48,7 +49,7 @@
 
 .entrada-de-texto_sucesso{
   align-self:start;
-  font-size:2rem;
+  font-size:1em;
   width:100%;
   height:48px;
   border:none;
@@ -92,10 +93,20 @@
 	}
 }
 
-@media screen and (max-width:375px){
+@media screen and (max-width:560px){
 
-  html{
-    font-size:10.5px;
+  .entrada-de-texto_erro::placeholder{
+    font-size:0.8em;
+  }  
+}
+
+@media screen and (max-width:440px){
+
+  .principal__primeira-secao{
+    font-size:24px;
   }
 
+  .entrada-de-texto_erro::placeholder{
+    font-size:0.8em;
+  }
 }
