@@ -35,7 +35,7 @@
 
 .entrada-de-texto_erro{
 	align-self:start;
-	font-size:32px;
+	font-size:2rem;
 	width:100%;
 	height:48px;
 	border:none;
@@ -48,7 +48,7 @@
 
 .entrada-de-texto_sucesso{
   align-self:start;
-  font-size:32px;
+  font-size:2rem;
   width:100%;
   height:48px;
   border:none;
@@ -82,7 +82,7 @@
 	height:67px;
 }
 
-@media(max-width:767px){
+@media screen and (max-width:767px){
 	.botoes{
 		flex-direction:column;
 		align-items:center;
@@ -94,11 +94,8 @@
 
 @media screen and (max-width:375px){
 
-  .entrada-de-texto_erro::placeholder{
-    font-size:20px;
+  html{
+    font-size:10.5px;
   }
-  
-  .entrada-de-texto_sucesso::placeholder{
-    font-size:20px;
-  }
+
 }
