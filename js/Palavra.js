@@ -104,7 +104,31 @@ export default class Palavra{
     }
 
 trocaPalavra(){
-  }
+    for(let i = 0; i < this.#acertos.length; i++){
+      if(this.#acertos[i] != 1){
+        this.#desenhistaLetra.desenhaLetra(this.#palavraAtual[i],[i]);
+      }
+    }
+    setTimeout(() => {
+      this.#desenhistaForca.controlaDesenho(-1);    
+        this.#desenhistaLetra.apagarQuadro();
+        this.#palavras.splice(this.#palavraAtualIndex,1);
+        if(this.#palavras.length == 1){
+          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
+        }
+        this.#sorteiaPalavra();
+        this.#tentativas = 9;
+        this.#acertos = new Array(this.#palavraAtual.length);
+        for (var i = 0; i < this.#acertos.length; i++) {
+            this.#acertos[i] = 0;
+        }
+        this.#historicoDeLetras.splice(0)
+        this.#desenhistaLetra.numeroDeLetras = this.#palavraAtual.length;
+        this.#desenhistaForca.controlaDesenho(this.#tentativas);
+        this.#desenhistaLetra.desenhaEspacoLetras();
+
+  },2000)
+}
 
   //recebe um a tecla como parâmetro
 comparar(letra) {

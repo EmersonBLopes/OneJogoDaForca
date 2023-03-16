@@ -58,7 +58,7 @@
  }
 
 .principal__botoes{
-	width:100%;
+	width:90%;
   max-width:740px;
 	align-self:center;
 	display:flex;
@@ -90,7 +90,7 @@
 
 @media(max-width:375px){
 	.principal__teclado-virtual{
-		width:90%;
+		width:100%;
 	}
 
 	.tecla-virtual{
@@ -99,7 +99,6 @@
 	}
 	
   .principal__botoes{
-    width:100%;
     flex-direction:column;
     align-items:center;
   }
