@@ -14,12 +14,11 @@ export default class Requisicao{
   }
 
   async adicionarPalavra(palavra){
-    const resposta = await fetch(this.#URL+"solicitar",{
-      method: "POST",
-      headers:{
-        "Content-Type" : "text/plain"
-      },
-      body: palavra,
-    });
+    const resposta = await Promise.resolve(fetch(this.#URL+"solicitar",{ method: "POST", headers:{ "Content-Type" : "text/plain" }, body: palavra})
+      .then((promise) => promise.text())
+      .then((textoResposta) => textoResposta)
+    );
+
+    return resposta;
   }
 }

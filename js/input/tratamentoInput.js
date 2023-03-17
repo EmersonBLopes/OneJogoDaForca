@@ -16,20 +16,22 @@ function validarPalavra(palavra){
   return 5;
 }
 
-function tratarInput(input){
+async function tratarInput(input){
   
   const palavra = input.value;
   const gerenciador = new GerenciadorDeMensagens(input);
   const codigoDeValidacao = validarPalavra(input.value);
+  let respostaDoServidor;
 
   gerenciador.alteraMensagem(codigoDeValidacao);
 
   if(codigoDeValidacao === 5){
 
     let requisicao = new Requisicao();
-    requisicao.adicionarPalavra(palavra.toLowerCase());
+    respostaDoServidor =  await requisicao.adicionarPalavra(palavra.toLowerCase());
   }
 
+  console.log(respostaDoServidor);
   setTimeout(() => {gerenciador.mensagemPadrao;},2000);
 }
 
