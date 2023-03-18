@@ -32,7 +32,10 @@ async function tratarInput(input){
     gerenciador.mensagemDoServidor(respostaDoServidor);
   }
 
-  setTimeout(() => {gerenciador.mensagemPadrao;},2000);
+  setTimeout(() => {
+    gerenciador.mensagemPadrao;
+    input.focus();
+  },2000);
 }
 
 export default tratarInput;

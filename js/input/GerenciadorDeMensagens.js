@@ -12,6 +12,7 @@ export default class GerenciadorDeMensagens{
 
   alteraMensagem(indexDaMensagem){
     this.#input.value = ""
+    this.#input.blur();
     this.#input.setAttribute("placeholder",this.#mensagensDeTratamento[indexDaMensagem]);
     this.#input.classList.remove("entrada-de-texto");
     if(indexDaMensagem != 5){
@@ -23,6 +24,7 @@ export default class GerenciadorDeMensagens{
 
   mensagemDoServidor(mensagem){
     this.#input.value = "";
+    this.#input.blur();
     this.#input.setAttribute("placeholder",mensagem);
   }
 
