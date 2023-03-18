@@ -23,15 +23,15 @@ async function tratarInput(input){
   const codigoDeValidacao = validarPalavra(input.value);
   let respostaDoServidor;
 
-  gerenciador.alteraMensagem(codigoDeValidacao);
+  if(codigoDeValidacao != 5) gerenciador.alteraMensagem(codigoDeValidacao);
 
   if(codigoDeValidacao === 5){
 
     let requisicao = new Requisicao();
     respostaDoServidor =  await requisicao.adicionarPalavra(palavra.toLowerCase());
+    gerenciador.mensagemDoServidor(respostaDoServidor);
   }
 
-  console.log(respostaDoServidor);
   setTimeout(() => {gerenciador.mensagemPadrao;},2000);
 }
 

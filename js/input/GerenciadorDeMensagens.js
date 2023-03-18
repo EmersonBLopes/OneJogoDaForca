@@ -6,7 +6,6 @@ export default class GerenciadorDeMensagens{
     "A palavra não pode conter números",
     "No minimo três caracteres",
     "Limite de caracter foi ultrapassado",
-    "Sugestão de palavra enviada =)" 
   ];
     
   #input;
@@ -20,6 +19,11 @@ export default class GerenciadorDeMensagens{
     }else{
       this.#input.classList.add("entrada-de-texto_sucesso");
     }
+  }
+
+  mensagemDoServidor(mensagem){
+    this.#input.value = "";
+    this.#input.setAttribute("placeholder",mensagem);
   }
 
   get mensagemPadrao(){
