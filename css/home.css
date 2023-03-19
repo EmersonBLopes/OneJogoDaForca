@@ -7,11 +7,13 @@
 }
 
 .principal__botoes{
+  width:90%;
+  max-width:317px;
 	display:flex;
 	flex-direction:column;
 }
 
 .botao{
-	 width:317px; 
+	 width:100%; 
 	 height:105px;
 }
