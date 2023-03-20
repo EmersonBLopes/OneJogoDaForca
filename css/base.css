@@ -7,9 +7,12 @@ body{
 }
 
 .cabecalho__logo{
+  font-size:0;
 	position:absolute;
 	top:40px;
 	left:40px;
+  padding:24px;
+  background: no-repeat url("../assets/img/logo.svg");
 }
 
 .botao{

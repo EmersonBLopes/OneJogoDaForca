@@ -11,13 +11,14 @@
 	</head>
   <body>
     <header class="cabecalho">
-      <a href="./index.html"><img src="./assets/img/logo.svg" alt="logo alura" class="cabecalho__logo"/></a>
+      <a href="./index.html" class="cabecalho__logo">retornar para a página principal</a>
     </header>
     <main class="home__principal">
       <div class="principal__botoes">
-        <a href="./pages/jogo_da_forca.html"><button class="botao botao_primario">Começar a jogar</button></a>
-        <a href="./pages/adicionar.html"><button class="botao botao_secundario" >Adicionar nova palavra</button></a>
+        <button class="botao botao_primario" data-comecar>Começar a jogar</button>
+        <button class="botao botao_secundario" data-sugerir>Sugerir palavras</button>
       </div>
     </main>
   </body>
+  <script src="./js/index.js"></script>
 </html>
