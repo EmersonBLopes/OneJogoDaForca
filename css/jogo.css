@@ -57,6 +57,10 @@
 	 background:#646E7A;
  }
 
+ .descricao-acessibilidade{
+  font-size:0;
+ }
+
 .principal__botoes{
 	width:90%;
   max-width:740px;
