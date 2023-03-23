@@ -1,6 +1,7 @@
 import Forca from "./canva/Forca.js";
 import Letras from "./canva/Letras.js";
 import Requisicao from "./API/Requisicao.js";
+import listaDePalavra from "../assets/data/listaDePalavra.json" assert {type:"json"};
 
 export default class Palavra{
 
@@ -26,7 +27,12 @@ export default class Palavra{
 
   constructor(){
     this.#requisicao = new Requisicao();
+    try{
     this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
+    }catch(ex){
+      this.#palavras = listaDePalavra;
+      console.log("Servidor Indisponível");
+    }
     this.#sorteiaPalavra();
     this.#tentativas = 9;
     this.#acertos = new Array(this.#palavraAtual.length);
