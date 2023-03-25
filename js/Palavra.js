@@ -17,6 +17,8 @@ export default class Palavra{
   #requisicao;
   #audioGanhou;
   #audioPerdeu;
+  #audioAcertou;
+  #audioErrou;
 
   #sorteiaPalavra(){
     let palavraAtualIndex = Math.floor(Math.random()*this.#palavras.length);
@@ -46,6 +48,8 @@ export default class Palavra{
     this.#desenhistaLetra.desenhaEspacoLetras();
     this.#audioGanhou = new Audio("../assets/audio/ganhou.mp3");
     this.#audioPerdeu = new Audio("../assets/audio/perdeu.mp3");
+    this.#audioErrou = new Audio("../assets/audio/erro.mp3");
+    this.#audioAcertou = new Audio("../assets/audio/acerto.mp3");
   }
 
   setAcertos(index){
@@ -149,8 +153,10 @@ comparar(letra) {
     
     if (!acertou) {
       this.#tentativas--;
+      this.#audioErrou.play();
       this.#desenhistaForca.controlaDesenho(this.#tentativas);
     }else{
+      this.#audioAcertou.play();
       this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
     }
   }
