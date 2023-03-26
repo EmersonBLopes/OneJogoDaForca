@@ -33,17 +33,17 @@ export default class Letras{
 
   //desenha o espaço para cada letra da palavra.
   desenhaEspacoLetras(){
+
     var x1,x2,larguraPalavra;
     const y = this.#desenhistaLetra.alturaMaxima*0.75;
     
-    larguraPalavra = 0;
-      //calcula o ponto de partida
-      x1 = (this.#desenhistaLetra.larguraMaxima-this.#calculaLarguraPalavra(0.08,0.125))/2;
-      for(var i = 0; i < this.#numeroDeLetras; i++){
-        this.#desenhistaLetra.desenharTraco(x1,x1+this.#desenhistaLetra.larguraMaxima*0.08,y,y,"horizontal");
-        this.#posicoesDasLetras[i] = x1;
-        //margin a direita de cada traco
-        x1 += this.#desenhistaLetra.larguraMaxima*0.125;
+    //calcula o ponto de partida
+    x1 = (this.#desenhistaLetra.larguraMaxima-this.#calculaLarguraPalavra(0.08,0.125))/2;
+    for(var i = 0; i < this.#numeroDeLetras; i++){
+      this.#desenhistaLetra.desenharTraco(x1,x1+this.#desenhistaLetra.larguraMaxima*0.08,y,y);
+      this.#posicoesDasLetras[i] = x1;
+      //margin a direita de cada traco
+      x1 += this.#desenhistaLetra.larguraMaxima*0.125;
     }
   }
 
