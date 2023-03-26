@@ -5,6 +5,7 @@ export default class Desenho{
   #svgNS = "http://www.w3.org/2000/svg";
   #strokeWidth = 12;
   #tela;
+  #duracaoAnimacao = "1s";
 
   constructor(tela){
 
@@ -16,7 +17,7 @@ export default class Desenho{
 
   get larguraMaxima(){ return this.#tela.getBoundingClientRect().width; }
 
-  desenharTraco(x1,x2,y1,y2){
+  desenharTraco(x1,x2,y1,y2,direcao){
 
     const traco = document.createElementNS(this.#svgNS,"line");
     traco.setAttributeNS(null,"x1",x1);
@@ -25,7 +26,55 @@ export default class Desenho{
     traco.setAttributeNS(null,"y2",y2);
     traco.setAttributeNS(null,"stroke-linecap","round");
     traco.setAttributeNS(null,"style",`stroke:${this.#mainColor}; stroke-width:${this.#strokeWidth};`)
+
+    //animacoes do SVG
+    if(direcao === "horizontal"){
+
+        const animacao = document.createElementNS(this.#svgNS, "animate");
+        animacao.setAttributeNS(null,"attributeName","x2");
+        animacao.setAttributeNS(null,"attributeType","XML");
+        animacao.setAttributeNS(null,"from",x1);
+        animacao.setAttributeNS(null,"to",x2);
+        animacao.setAttributeNS(null,"begin",this.#tela.getCurrentTime());
+        animacao.setAttributeNS(null,"dur",this.#duracaoAnimacao);
+
+        traco.appendChild(animacao);
+    }else if(direcao === "vertical"){
+
+        const animacao = document.createElementNS(this.#svgNS, "animate");
+        animacao.setAttributeNS(null,"attributeName","y2");
+        animacao.setAttributeNS(null,"attributeType","XML");
+        animacao.setAttributeNS(null,"from",y1);
+        animacao.setAttributeNS(null,"to",y2);
+        animacao.setAttributeNS(null,"begin",this.#tela.getCurrentTime());
+        animacao.setAttributeNS(null,"dur",this.#duracaoAnimacao);
+
+        traco.appendChild(animacao);
+
+    }else if(direcao == "ambos"){
+
+        const animacaoVertical = document.createElementNS(this.#svgNS, "animate");
+
+        animacaoVertical.setAttributeNS(null,"attributeName","y2");
+        animacaoVertical.setAttributeNS(null,"attributeType","XML");
+        animacaoVertical.setAttributeNS(null,"from",y1);
+        animacaoVertical.setAttributeNS(null,"to",y2);
+        animacaoVertical.setAttributeNS(null,"begin",this.#tela.getCurrentTime());
+        animacaoVertical.setAttributeNS(null,"dur",this.#duracaoAnimacao);
+
+        traco.appendChild(animacaoVertical);
     
+        const animacaoHorizontal = document.createElementNS(this.#svgNS, "animate");
+        animacaoHorizontal.setAttributeNS(null,"attributeName","x2");
+        animacaoHorizontal.setAttributeNS(null,"attributeType","XML");
+        animacaoHorizontal.setAttributeNS(null,"from",x1);
+        animacaoHorizontal.setAttributeNS(null,"to",x2);
+        animacaoHorizontal.setAttributeNS(null,"begin",this.#tela.getCurrentTime());
+        animacaoHorizontal.setAttributeNS(null,"dur",this.#duracaoAnimacao);
+
+        traco.appendChild(animacaoHorizontal);
+    }
+
     this.#tela.appendChild(traco);
   };
 

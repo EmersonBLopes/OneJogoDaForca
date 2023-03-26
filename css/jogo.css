@@ -44,6 +44,7 @@
 	 cursor:pointer;
 	 width:50px;
 	 height:60px;
+   transition:background-color 0.5s;
 	 font-size:24px;
 	 color:#fff;
 	 margin:0 13px 10px 0;

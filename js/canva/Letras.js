@@ -40,7 +40,7 @@ export default class Letras{
       //calcula o ponto de partida
       x1 = (this.#desenhistaLetra.larguraMaxima-this.#calculaLarguraPalavra(0.08,0.125))/2;
       for(var i = 0; i < this.#numeroDeLetras; i++){
-        this.#desenhistaLetra.desenharTraco(x1,x1+this.#desenhistaLetra.larguraMaxima*0.08,y,y);
+        this.#desenhistaLetra.desenharTraco(x1,x1+this.#desenhistaLetra.larguraMaxima*0.08,y,y,"horizontal");
         this.#posicoesDasLetras[i] = x1;
         //margin a direita de cada traco
         x1 += this.#desenhistaLetra.larguraMaxima*0.125;

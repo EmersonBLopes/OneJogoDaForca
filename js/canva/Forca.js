@@ -17,7 +17,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.05,
             this.#desenhista.larguraMaxima*0.95,
             this.#desenhista.alturaMaxima*0.9,
-            this.#desenhista.alturaMaxima*0.9
+            this.#desenhista.alturaMaxima*0.9,
+            "horizontal"
             );
           break;
 
@@ -26,7 +27,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.2,
             this.#desenhista.larguraMaxima*0.2,
             this.#desenhista.alturaMaxima*0.9,
-            this.#desenhista.alturaMaxima*0.1
+            this.#desenhista.alturaMaxima*0.1,
+            "vertical"
           );
           break;
 
@@ -35,7 +37,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.2,
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.alturaMaxima*0.1,
-            this.#desenhista.alturaMaxima*0.1
+            this.#desenhista.alturaMaxima*0.1,
+            "horizontal"
           );
           break;
 
@@ -44,7 +47,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.alturaMaxima*0.1,
-            this.#desenhista.alturaMaxima*0.2
+            this.#desenhista.alturaMaxima*0.2,
+            "vertical"
           );
           break;
 
@@ -52,7 +56,7 @@ export default class Forca{
           this.#desenhista.desenharCirculo(
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.alturaMaxima*0.3,
-            this.#desenhista.alturaMaxima*0.08
+            this.#desenhista.alturaMaxima*0.08,
           );
           break;
 
@@ -61,7 +65,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.alturaMaxima*0.38,
-            this.#desenhista.alturaMaxima*0.61
+            this.#desenhista.alturaMaxima*0.61,
+            "vertical"
           );
           break;
 
@@ -70,7 +75,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.larguraMaxima*0.55,
             this.#desenhista.alturaMaxima*0.61,
-            this.#desenhista.alturaMaxima*0.8
+            this.#desenhista.alturaMaxima*0.8,
+            "ambos"
           );
           break;
 
@@ -79,7 +85,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.larguraMaxima*0.65,
             this.#desenhista.alturaMaxima*0.61,
-            this.#desenhista.alturaMaxima*0.8
+            this.#desenhista.alturaMaxima*0.8,
+            "ambos"
           );
           break;
         case 1:
@@ -87,7 +94,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.larguraMaxima*0.52,
             this.#desenhista.alturaMaxima*0.45,
-            this.#desenhista.alturaMaxima*0.65
+            this.#desenhista.alturaMaxima*0.65,
+            "ambos"
           );
           break;
 
@@ -96,7 +104,8 @@ export default class Forca{
             this.#desenhista.larguraMaxima*0.6,
             this.#desenhista.larguraMaxima*0.68,
             this.#desenhista.alturaMaxima*0.45,
-            this.#desenhista.alturaMaxima*0.65
+            this.#desenhista.alturaMaxima*0.65,
+            "ambos"
           );
           break;
 
