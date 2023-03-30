@@ -1,16 +1,20 @@
 body{
 	background:var(--background-color);
+  display:flex;
+  flex-direction:column;
 }
 
 .cabecalho{
-	height:11vh;
+  align-self:center;
+  width:95%;
+	height:15vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .cabecalho__logo{
   font-size:0;
-	position:absolute;
-	top:40px;
-	left:40px;
   padding:24px;
   background: no-repeat url("../assets/img/logo.svg");
 }

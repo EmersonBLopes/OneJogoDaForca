@@ -1,5 +1,14 @@
+.cabecalho__configuracoes:visited{
+  color:var(--main-color); 
+}
+
+.cabecalho__icone-config{
+   color:var(--main-color);
+   font-size:2.2rem !important;
+ }
+
 .home__principal{
-  height:89vh;
+  height:85vh;
   display:flex;
   align-items:center;
   flex-direction:column;
