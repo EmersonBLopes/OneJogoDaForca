@@ -19,6 +19,14 @@ body{
   background: no-repeat url("../assets/img/logo.svg");
 }
 
+.principal{
+  width:100vw;
+  height:85vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
 .botao{
 	font-size:1rem;
   width:317px; 

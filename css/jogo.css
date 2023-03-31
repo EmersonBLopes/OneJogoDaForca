@@ -1,8 +1,5 @@
 .jogo__principal{
-	display:flex;
-	flex-direction:column;
-	height:85vh;
-	align-items:center;
+  flex-direction:column;
 	justify-content:space-around;
 } 
 

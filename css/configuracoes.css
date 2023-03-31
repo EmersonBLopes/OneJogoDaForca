@@ -1,0 +1,20 @@
+.configuracoes{
+  height:70%;
+  width:80%;
+  max-width:752px;
+}
+
+.opcao{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+}
+
+.opcao__descricao{
+  font-size:1.5rem;
+  color:var(--main-color);
+}
+
+.opcao__checkbox{
+  width:40px;
+}
