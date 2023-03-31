@@ -153,16 +153,16 @@ comparar(letra) {
     
     if (!acertou) {
       this.#tentativas--;
-      this.#audioErrou.play();
+      if(localStorage.getItem("audio") === "true") this.#audioErrou.play();
       this.#desenhistaForca.controlaDesenho(this.#tentativas);
     }else{
-      this.#audioAcertou.play();
+      if(localStorage.getItem("audio") === "true") this.#audioAcertou.play();
       this.#desenhistaLetra.desenhaLetra(letra,this.#buscaIndex(letra));
     }
   }
   fimDeJogo = this.#verificaGanhou();
   if(fimDeJogo){
-    this.#audioGanhou.play();
+    if(localStorage.getItem("audio") === "true") this.#audioGanhou.play();
     setTimeout(() => alert("Você ganhou!"),1000);
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
@@ -188,7 +188,7 @@ comparar(letra) {
     },3000);
   }else if(this.#tentativas == 0){
     fimDeJogo = true;
-    this.#audioPerdeu.play();
+    if(localStorage.getItem("audio") === "true") this.#audioPerdeu.play();
     setTimeout(() => alert("Você perdeu."),1000);
     for(let i = 0; i < this.#acertos.length; i++){
       if(this.#acertos[i] != 1){
