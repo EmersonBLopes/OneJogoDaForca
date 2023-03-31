@@ -8,6 +8,8 @@ var palavra = new Palavra();
 //transforma o html collection em Array
 var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual"));
 
+if(localStorage.getItem("teclado-virtual") === "false") document.querySelector(".principal__teclado-virtual").remove();
+
 function resetaTeclas(){
     tecladoVirtual.forEach((tecla)=>{
       tecla.classList.remove("tecla_desativada");
@@ -35,13 +37,20 @@ tecladoVirtual.forEach((tecla)=>{
   })
 })
 
-//escuta entradas do teclado
+//escuta entradas do teclado fisico
 document.addEventListener("keydown",(evento)=>{
   if(evento.keyCode >= 65 && evento.keyCode <= 90 && !travar){
-    let tecla = document.querySelector(`[data-letra="${evento.key.toLowerCase()}"]`);
-    let letra = tecla.dataset.letra;
-    //desativa tecla
-    tecla.classList.add("tecla_desativada");
+
+    let letra 
+
+    if(localStorage.getItem("teclado-virtual") === "true"){
+      let tecla = document.querySelector(`[data-letra="${evento.key.toLowerCase()}"]`);
+      letra = tecla.dataset.letra;
+      //desativa tecla
+      tecla.classList.add("tecla_desativada");
+    }else{
+      letra = evento.key.toLowerCase();
+    }
     if(palavra.comparar(letra)){
         travarInputs();
         resetaTeclas();
