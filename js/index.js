@@ -7,6 +7,11 @@ const botaoSecundario = document.querySelector("[data-sugerir]");
 
 const disponibilidadeDoServidor = await solicitador.verificarConexao();
 
+if(localStorage.length == 0){
+  localStorage.setItem("teclado-virtual", true);
+  localStorage.setItem("audio", true);
+}
+
 if(!disponibilidadeDoServidor){
 
   const avisoServidor = document.createElement("div");
