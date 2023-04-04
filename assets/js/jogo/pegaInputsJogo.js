@@ -1,4 +1,4 @@
-import Palavra from "./Palavra.js";
+import Palavra from "./ControladorJogo.js";
 
 var travar = false;
 const botaNovoJogo = document.querySelector("[data-novojogo]");
@@ -10,12 +10,14 @@ var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual")
 
 if(localStorage.getItem("teclado-virtual") === "false") document.querySelector(".principal__teclado-virtual").remove();
 
+//reseta o teclado virtual
 function resetaTeclas(){
     tecladoVirtual.forEach((tecla)=>{
       tecla.classList.remove("tecla_desativada");
     })
 }
 
+//quando o usuário acerta todas as letras trava os inputs do usuario por 3 segundos
 function travarInputs(){
     travar = true;
     setTimeout(() => travar = false, 3000);
@@ -59,11 +61,13 @@ document.addEventListener("keydown",(evento)=>{
   }
 });
 
+//ação ao clicar no botao de novo jogo
 botaNovoJogo.addEventListener("click",()=>{
   resetaTeclas();
   palavra.trocaPalavra();
 });
 
+//ação caso o usuariao clique em desistir
 botaoDesistir.addEventListener("click",()=>{
   location.replace("https://emersonblopes.github.io/OneJogoDaForca/index.html");
 });

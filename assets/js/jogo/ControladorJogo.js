@@ -3,7 +3,7 @@ import Letras from "./canva/Letras.js";
 import Requisicao from "../API/Requisicao.js";
 import listaDePalavra from "../../data/listaDePalavra.json" assert {type:"json"};
 
-export default class Palavra{
+export default class ControladorJogo{
 
   #palavras;
   #palavraAtual;
@@ -20,6 +20,7 @@ export default class Palavra{
   #audioAcertou;
   #audioErrou;
 
+  //Classe Palavra
   #sorteiaPalavra(){
     let palavraAtualIndex = Math.floor(Math.random()*this.#palavras.length);
     var palavraSorteada = this.#palavras[palavraAtualIndex];
@@ -77,7 +78,7 @@ export default class Palavra{
   return resultado;
 }
 
-    //verifica se a letra existe na palavra, caso exista retorna true 
+//Classe palavra
 #verificaLetraPalavra(letra){
   let resposta = false;
   for (var i = 0; i < this.#palavraAtual.length; i++) {
@@ -89,7 +90,7 @@ export default class Palavra{
   return resposta;
 }
 
-//retorna o index das letras encontradas
+//Classe Palavra
 #buscaIndex(letra){
   let indexEncontrados = new Array(); 
   for(var i = 0; i<this.#palavraAtual.length; i++){
@@ -113,6 +114,7 @@ export default class Palavra{
       return true;
     }
 
+//classe palavra
 trocaPalavra(){
     for(let i = 0; i < this.#acertos.length; i++){
       if(this.#acertos[i] != 1){
