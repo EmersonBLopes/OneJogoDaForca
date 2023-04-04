@@ -1,7 +1,7 @@
 import Forca from "./canva/Forca.js";
 import Letras from "./canva/Letras.js";
-import Requisicao from "./API/Requisicao.js";
-import listaDePalavra from "../data/listaDePalavra.json" assert {type:"json"};
+import Requisicao from "../API/Requisicao.js";
+import listaDePalavra from "../../data/listaDePalavra.json" assert {type:"json"};
 
 export default class Palavra{
 
@@ -46,10 +46,10 @@ export default class Palavra{
     this.#desenhistaLetra = new Letras(this.#palavraAtual.length);
     this.#desenhistaForca.controlaDesenho(this.#tentativas);
     this.#desenhistaLetra.desenhaEspacoLetras();
-    this.#audioGanhou = new Audio("../assets/audio/ganhou.mp3");
-    this.#audioPerdeu = new Audio("../assets/audio/perdeu.mp3");
-    this.#audioErrou = new Audio("../assets/audio/erro.mp3");
-    this.#audioAcertou = new Audio("../assets/audio/acerto.mp3");
+    this.#audioGanhou = new Audio("../audio/ganhou.mp3");
+    this.#audioPerdeu = new Audio("../audio/perdeu.mp3");
+    this.#audioErrou = new Audio("../audio/erro.mp3");
+    this.#audioAcertou = new Audio("../audio/acerto.mp3");
   }
 
   setAcertos(index){
