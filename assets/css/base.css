@@ -16,7 +16,7 @@ body{
 .cabecalho__logo{
   font-size:0;
   padding:24px;
-  background: no-repeat url("../assets/img/logo.svg");
+  background: no-repeat url("../img/logo.svg");
 }
 
 .principal{

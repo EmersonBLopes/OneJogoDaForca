@@ -1,7 +1,7 @@
 import Forca from "./canva/Forca.js";
 import Letras from "./canva/Letras.js";
 import Requisicao from "./API/Requisicao.js";
-import listaDePalavra from "../assets/data/listaDePalavra.json" assert {type:"json"};
+import listaDePalavra from "../data/listaDePalavra.json" assert {type:"json"};
 
 export default class Palavra{
 
