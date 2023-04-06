@@ -159,7 +159,7 @@ comparar(letra) {
   if(!this.#verificaHistorico(letra)){
     
     //verifica se a letra consta na palavra;
-    if (indexDosAcertos == 0) {
+    if (indexDosAcertos.length == 0) {
 
       this.#tentativas--;
       if(localStorage.getItem("audio") === "true") this.#audioErrou.play();
