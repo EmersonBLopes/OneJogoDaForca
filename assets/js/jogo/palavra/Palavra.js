@@ -47,6 +47,10 @@ export default class Palavra{
     return this.#listaDePalavras[this.palavraAtualIndex];
   }
 
+  get acertos(){
+    return this.#acertos;
+  }
+
   /**
    * @method remove a palavra atual da lista de palavras e sorteia uma nova palavra
    */
