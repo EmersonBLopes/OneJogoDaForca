@@ -199,6 +199,7 @@ comparar(letra) {
     }
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
+      //classe Palavra
         this.#desenhistaLetra.apagarQuadro();
         this.#palavras.splice(this.#palavraAtualIndex,1);
         if(this.#palavras.length == 1){
