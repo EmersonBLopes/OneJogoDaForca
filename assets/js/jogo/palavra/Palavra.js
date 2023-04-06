@@ -6,8 +6,17 @@ export default class Palavra{
   #listaDePalavras;
   #palavraAtualIndex;
   #acertos = new Array();
+  #palavraAtual;
   
   #solicitador = new Requisicao();
+
+  /**
+   * @return {string} palavra atual 
+   */
+  get palavraAtual(){
+    return this.#palavraAtual;
+  }
+
 
   /**
    *@classdesc Contém todos os recursos necessários para o tratamento das palavras
@@ -26,29 +35,30 @@ export default class Palavra{
     }
 
     //sorteia uma palavra
-    this.#palavraAtualIndex = this.#sorteiaPalavra();
-
+    this.#palavraAtualIndex = this.sorteiaPalavra();
     //configurando os acertos
-    for(let i = 0; i < this.palavraAtual.legth; i++){ this.acertos.push(0) }
+    for(let i = 0; i < this.#palavraAtual.length; i++){ this.acertos.push(0) }
   }
   
   /**
    *@method sorteia um número aleatório com base na largura da lista de palavras
    *@return número aleatório sorteado com base na lista de palavras
    */
-  #sorteiaPalavra(){
-    return Math.floor(Math.random() * this.#listaDePalavras.length); 
-  }
+  sorteiaPalavra(){
 
-  /**
-   * @return {string} palavra atual 
-   */
-  get palavraAtual(){
-    return this.#listaDePalavras[this.palavraAtualIndex];
+    const numeroAleatorio = Math.floor(Math.random() * this.#listaDePalavras.length);
+    this.#palavraAtual = this.#listaDePalavras[numeroAleatorio].conteudo;
+    this.#palavraAtualIndex = numeroAleatorio;
+
+    return ; 
   }
 
   get acertos(){
     return this.#acertos;
+  }
+
+  set acertos(array){
+    this.#acertos = array;
   }
 
   /**
@@ -57,15 +67,21 @@ export default class Palavra{
   trocaPalavra(){
 
     //remove a palavra atual da lista de palavras 
-    this.#listaDePalavras.splice(this.#palavraAtual,1);
+    this.#listaDePalavras.splice(this.#palavraAtualIndex,1);
     
     //verifica se existe somente uma palavra na lista de palavras caso verdadeiro solicita mais 20 palavras aleatorias
     if(this.#listaDePalavras.length == 1){
+
       try{
+
         this.#listaDePalavras = this.#solicitador.solicitarPalavrasAleatorias(20);
+        
       }catch(ex){
+
         this.#listaDePalavras = bancoDePalavrasOffline;
+
       }
+
       this.#acertos.forEach((acerto) => acerto = 0);
     }
   }
@@ -78,10 +94,14 @@ export default class Palavra{
   encontraLetra(letra){
     let posicoes = new Array();
 
-    for(let i = 0;  i < this.palavraAtual.length; i++){
+    console.log(this.#palavraAtual)
+    for(let i = 0;  i < this.#palavraAtual.length; i++){
 
-      if(this.palavraAtual[i] == letra){
+      if(this.#palavraAtual[i] == letra){
+
         posicoes.push(i);
+        this.#acertos[i] = 1;
+
       }
 
     }
