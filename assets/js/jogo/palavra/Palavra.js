@@ -4,7 +4,7 @@ import Requisicao from "../../API/Requisicao.js";
 export default class Palavra{
 
   #listaDePalavras;
-  #palavraAtual;
+  #palavraAtualIndex;
   #acertos = new Array();
   
   #solicitador = new Requisicao();
@@ -26,10 +26,10 @@ export default class Palavra{
     }
 
     //sorteia uma palavra
-    this.#palavraAtual = this.#sorteiaPalavra();
+    this.#palavraAtualIndex = this.#sorteiaPalavra();
 
     //configurando os acertos
-    for(let i = 0; i < palavraAtual.legth; i++){ this.acertos.push(0) }
+    for(let i = 0; i < this.palavraAtual.legth; i++){ this.acertos.push(0) }
   }
   
   /**
@@ -41,10 +41,10 @@ export default class Palavra{
   }
 
   /**
-   * @return palavra atual 
+   * @return {string} palavra atual 
    */
   get palavraAtual(){
-    return this.#listaDePalavras[this.palavraAtual];
+    return this.#listaDePalavras[this.palavraAtualIndex];
   }
 
   /**
@@ -64,5 +64,23 @@ export default class Palavra{
       }
       this.#acertos.forEach((acerto) => acerto = 0);
     }
+  }
+
+  /**
+   * @method encontra e indexa a posição da letra
+   * @param {string} letra que será consultada
+   * @return {Array} de posicoes ou vazio caso nao seja encontrado
+   */
+  encontraLetra(letra){
+    let posicoes = new Array();
+
+    for(let i = 0;  i < this.palavraAtual.length; i++){
+
+      if(this.palavraAtual[i] == letra){
+        posicoes.push(i);
+      }
+
+    }
+    return posicoes; 
   }
 }
