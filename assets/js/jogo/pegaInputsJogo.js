@@ -31,7 +31,7 @@ tecladoVirtual.forEach((tecla)=>{
       let letra = teclaClicada.dataset.letra;
       //desativa tecla
       teclaClicada.classList.add("tecla_desativada");
-      if(palavra.comparar(letra)){
+      if(palavra.controladorPrincipal(letra)){
         travarInputs();
         resetaTeclas();
       }
@@ -53,7 +53,7 @@ document.addEventListener("keydown",(evento)=>{
     }else{
       letra = evento.key.toLowerCase();
     }
-    if(palavra.comparar(letra)){
+    if(palavra.controladorPrincipal(letra)){
         travarInputs();
         resetaTeclas();
         evento.preventDefault();

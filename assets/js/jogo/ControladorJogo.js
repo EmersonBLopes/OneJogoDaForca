@@ -7,9 +7,6 @@ import listaDePalavra from "../../data/listaDePalavra.json" assert {type:"json"}
 export default class ControladorJogo{
 
   #palavra = new Palavra();
-  //#palavras;
-  //#palavraAtual;
-  //#palavraAtualIndex;
   #tentativas;
   #acertos;
   #historicoDeLetras = new Array();
@@ -21,16 +18,7 @@ export default class ControladorJogo{
   #audioAcertou;
   #audioErrou;
 
-  //Classe Palavra
-  /*#sorteiaPalavra(){
-    let palavraAtualIndex = Math.floor(Math.random()*this.#palavras.length);
-    var palavraSorteada = this.#palavras[palavraAtualIndex];
-    this.#palavraAtualIndex = palavraAtualIndex;
-    this.#palavraAtual = palavraSorteada.conteudo;
-  }*/
-
   constructor(){
-    console.log(this.#palavra.palavraAtual)
     this.#tentativas = 9;
     this.#desenhistaForca = new Forca();
     this.#desenhistaLetra = new Letras(this.#palavra.palavraAtual.length);
@@ -40,25 +28,6 @@ export default class ControladorJogo{
     this.#audioPerdeu = new Audio("../audio/perdeu.mp3");
     this.#audioErrou = new Audio("../audio/erro.mp3");
     this.#audioAcertou = new Audio("../audio/acerto.mp3");
-    /*this.#requisicao = new Requisicao();
-    try{
-    this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
-    }catch(ex){
-      this.#palavras = listaDePalavra;
-      console.log("Servidor Indisponível");
-    }
-    this.#sorteiaPalavra();
-    this.#palavra.acertos = new Array(this.#palavraAtual.length);
-    for (var i = 0; i < this.#palavra.acertos.length; i++) {
-        this.#palavra.acertos[i] = 0;
-    }
-    this.#historicoDeLetras = Array();
-    */
-  }
-
-  setAcertos(index){
-    
-    this.#palavra.acertos[index] = 1;
   }
 
 #verificaHistorico(letra){
@@ -81,63 +50,42 @@ export default class ControladorJogo{
   return resultado;
 }
 
-//Classe palavra
-/*#verificaLetraPalavra(letra){
-  let resposta = false;
-  for (var i = 0; i < this.#palavraAtual.length; i++) {
-    if (this.#palavraAtual[i] == letra) {
-      this.setAcertos(i);
-      resposta = true;
-    }
-  }
-  return resposta;
-}*/
-
-//Classe Palavra
-/*#buscaIndex(letra){
-  let indexEncontrados = new Array(); 
-  for(var i = 0; i<this.#palavraAtual.length; i++){
-    if(this.#palavraAtual[i] == letra){
-      indexEncontrados.push(i);
-    }
-  }
-  return indexEncontrados;
-}*/
 //verifica se todas as letras foram acertadas
 #verificaGanhou(){
-      //confere todos os acertos
 
-      if(this.#palavra.acertos.length == 0) return false;
+    //verifica se todas as letras foram acertadas
+    for (let i = 0; i < this.#palavra.acertos.length; i++) {
 
-      for (let i = 0; i < this.#palavra.acertos.length; i++) {
-        if (this.#palavra.acertos[i] != 1) {
-          return false;
-        }
+      //se encontrar alguma letra que nao foi acertada returna falso
+      if (this.#palavra.acertos[i] != 1) {
+        return false;
       }
-      return true;
     }
+    //se todas as letras foram acertadas retorna true
+    return true;
+  }
+
+
+/**
+ * @method responsavel por resetar o jogo ao ganhar, perder ou trocar de palavra
+ */
+#resetaJogo(){
+
+}
 
 //classe palavra
 trocaPalavra(){
-    for(let i = 0; i < this.palavra.acertos.length; i++){
-      if(this.palavra.acertos[i] != 1){
-        this.#desenhistaLetra.desenhaLetra(this.palavra.palavraAtual[i],[i]);
+
+  //revela letras que nao foram acertadas
+    for(let i = 0; i < this.#palavra.palavraAtual.length; i++){
+      if(this.#palavra.acertos[i] != 1){
+        this.#desenhistaLetra.desenhaLetra(this.#palavra.palavraAtual[i],[i]);
       }
     }
     setTimeout(() => {
-        /*if(this.#palavras.length == 1){
-          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
-        }
-        this.#sorteiaPalavra();
-        for (var i = 0; i < this.#palavra.acertos.length; i++) {
-            this.#palavra.acertos[i] = 0;
-        }
-        this.#palavra.acertos = new Array(this.#palavra.palavraAtual.length);
-        */
-
         this.#desenhistaForca.controlaDesenho(-1);    
         this.#desenhistaLetra.apagarQuadro();
-        this.palavra.trocaPalavra();
+        this.#palavra.trocaPalavra();
         this.#tentativas = 9;
         this.#historicoDeLetras.splice(0)
         this.#desenhistaLetra.numeroDeLetras = this.#palavra.palavraAtual.length;
@@ -147,13 +95,11 @@ trocaPalavra(){
   },2000)
 }
 
-  //recebe um a tecla como parâmetro
-comparar(letra) {
+controladorPrincipal(letra) {
 
   let fimDeJogo;
   const indexDosAcertos = this.#palavra.encontraLetra(letra);
 
-  console.log(indexDosAcertos);
 
   //verifica se a letra consta no histórico se falso entra dentro do if
   if(!this.#verificaHistorico(letra)){
@@ -178,17 +124,9 @@ comparar(letra) {
     if(localStorage.getItem("audio") === "true") this.#audioGanhou.play();
     setTimeout(() => alert("Você ganhou!"),1000);
     setTimeout(() => {
-      /*this.#palavras.splice(this.#palavra.palavraAtualIndex,1);
-        if(this.#palavras.length == 1){
-          let novasPalavras = this.#requisicao.solicitarPalavrasAleatorias(20);
-          for(const palavra of novasPalavras){
-            this.#palavras.push(palavra);
-          }
-        }
-        */
       this.#desenhistaForca.controlaDesenho(-1);    
       this.#desenhistaLetra.apagarQuadro();
-      this.#palavra.sorteiaPalavra();
+      this.#palavra.trocaPalavra();
       this.#tentativas = 9;
       this.#palavra.acertos = new Array(this.#palavra.palavraAtual.length);
       for (var i = 0; i < this.#palavra.acertos.length; i++) {
@@ -211,14 +149,8 @@ comparar(letra) {
     }
     setTimeout(() => {
       this.#desenhistaForca.controlaDesenho(-1);    
-      //classe Palavra
-        /*        this.#palavras.splice(this.#palavra.palavraAtualIndex,1);
-        if(this.#palavras.length == 1){
-          this.#palavras = this.#requisicao.solicitarPalavrasAleatorias(20);
-        }*/
       this.#desenhistaLetra.apagarQuadro();
-
-        this.#palavra.sorteiaPalavra();
+        this.#palavra.trocaPalavra();
         this.#tentativas = 9;
         this.#palavra.acertos = new Array(this.#palavra.palavraAtual.length);
         for (var i = 0; i < this.#palavra.acertos.length; i++) {

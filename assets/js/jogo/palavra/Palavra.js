@@ -35,7 +35,7 @@ export default class Palavra{
     }
 
     //sorteia uma palavra
-    this.#palavraAtualIndex = this.sorteiaPalavra();
+    this.#palavraAtualIndex = this.#sorteiaPalavra();
     //configurando os acertos
     for(let i = 0; i < this.#palavraAtual.length; i++){ this.acertos.push(0) }
   }
@@ -44,13 +44,11 @@ export default class Palavra{
    *@method sorteia um número aleatório com base na largura da lista de palavras
    *@return número aleatório sorteado com base na lista de palavras
    */
-  sorteiaPalavra(){
+  #sorteiaPalavra(){
 
     const numeroAleatorio = Math.floor(Math.random() * this.#listaDePalavras.length);
     this.#palavraAtual = this.#listaDePalavras[numeroAleatorio].conteudo;
     this.#palavraAtualIndex = numeroAleatorio;
-
-    return ; 
   }
 
   get acertos(){
@@ -81,9 +79,9 @@ export default class Palavra{
         this.#listaDePalavras = bancoDePalavrasOffline;
 
       }
-
-      this.#acertos.forEach((acerto) => acerto = 0);
     }
+    this.#acertos.forEach((acerto) => acerto = 0);
+    this.#sorteiaPalavra();
   }
 
   /**
