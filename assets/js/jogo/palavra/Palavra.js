@@ -78,8 +78,10 @@ export default class Palavra{
     }
     this.#sorteiaPalavra();
 
-    this.#acertos = []; //esvazia array de acertos
-    for(let i = 0; i < this.#palavraAtual; i++){this.acertos.push(0)}; //popula o array de acertos
+    this.#acertos = new Array(); //esvazia array de acertos
+    for(let i = 0; i < this.#palavraAtual.length; i++){
+      this.#acertos.push(0)
+    }; //popula o array de acertos
   }
 
   /**
@@ -90,7 +92,6 @@ export default class Palavra{
   encontraLetra(letra){
     let posicoes = new Array();
 
-    console.log(this.#palavraAtual)
     for(let i = 0;  i < this.#palavraAtual.length; i++){
 
       if(this.#palavraAtual[i] == letra){
