@@ -55,10 +55,6 @@ export default class Palavra{
     return this.#acertos;
   }
 
-  set acertos(array){
-    this.#acertos = array;
-  }
-
   /**
    * @method remove a palavra atual da lista de palavras e sorteia uma nova palavra
    */
@@ -80,8 +76,10 @@ export default class Palavra{
 
       }
     }
-    this.#acertos.forEach((acerto) => acerto = 0);
     this.#sorteiaPalavra();
+
+    this.#acertos = []; //esvazia array de acertos
+    for(let i = 0; i < this.#palavraAtual; i++){this.acertos.push(0)}; //popula o array de acertos
   }
 
   /**

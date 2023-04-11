@@ -1,9 +1,9 @@
-import Palavra from "./ControladorJogo.js";
+import ControladorJogo from "./ControladorJogo.js";
 
-var travar = false;
+let travar = false;
 const botaNovoJogo = document.querySelector("[data-novojogo]");
 const botaoDesistir = document.querySelector("[data-desistir]");
-var palavra = new Palavra();
+let controladorJogo = new ControladorJogo();
 
 //transforma o html collection em Array
 var tecladoVirtual = Array.from(document.getElementsByClassName("tecla-virtual"));
@@ -31,7 +31,7 @@ tecladoVirtual.forEach((tecla)=>{
       let letra = teclaClicada.dataset.letra;
       //desativa tecla
       teclaClicada.classList.add("tecla_desativada");
-      if(palavra.controladorPrincipal(letra)){
+      if(controladorJogo.controladorPrincipal(letra)){
         travarInputs();
         resetaTeclas();
       }
@@ -53,7 +53,7 @@ document.addEventListener("keydown",(evento)=>{
     }else{
       letra = evento.key.toLowerCase();
     }
-    if(palavra.controladorPrincipal(letra)){
+    if(controladorJogo.controladorPrincipal(letra)){
         travarInputs();
         resetaTeclas();
         evento.preventDefault();
@@ -64,7 +64,7 @@ document.addEventListener("keydown",(evento)=>{
 //ação ao clicar no botao de novo jogo
 botaNovoJogo.addEventListener("click",()=>{
   resetaTeclas();
-  palavra.trocaPalavra();
+  controladorJogo.trocaPalavra();
 });
 
 //ação caso o usuariao clique em desistir

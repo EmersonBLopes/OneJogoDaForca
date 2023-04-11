@@ -18,6 +18,9 @@ export default class ControladorJogo{
   #audioAcertou;
   #audioErrou;
 
+  /**
+   * @class classe responsavel por controlar o jogo e se comunicar com as outras classes
+   */
   constructor(){
     this.#tentativas = 9;
     this.#desenhistaForca = new Forca();
@@ -50,7 +53,10 @@ export default class ControladorJogo{
   return resultado;
 }
 
-//verifica se todas as letras foram acertadas
+/**
+ * @method verifica se todas as letras foram acertadas
+ * @return {boolean} retorna true se todas as letras foram acertadas caso contrario false;
+ */
 #verificaGanhou(){
 
     //verifica se todas as letras foram acertadas
@@ -70,98 +76,82 @@ export default class ControladorJogo{
  * @method responsavel por resetar o jogo ao ganhar, perder ou trocar de palavra
  */
 #resetaJogo(){
-
+  this.#desenhistaForca.controlaDesenho(-1);    
+  this.#desenhistaLetra.apagarQuadro();
+  this.#palavra.trocaPalavra();
+  this.#tentativas = 9;
+  this.#historicoDeLetras.splice(0)
+  this.#desenhistaLetra.numeroDeLetras = this.#palavra.palavraAtual.length;
+  this.#desenhistaForca.controlaDesenho(this.#tentativas);
+  this.#desenhistaLetra.desenhaEspacoLetras();
 }
 
-//classe palavra
-trocaPalavra(){
-
-  //revela letras que nao foram acertadas
+/**
+ * @method responsavel por revelar todas as letras que nao foram acertadas. Consequentemente revelando a palavra
+ */
+#revelaPalavra(){
     for(let i = 0; i < this.#palavra.palavraAtual.length; i++){
       if(this.#palavra.acertos[i] != 1){
         this.#desenhistaLetra.desenhaLetra(this.#palavra.palavraAtual[i],[i]);
       }
     }
-    setTimeout(() => {
-        this.#desenhistaForca.controlaDesenho(-1);    
-        this.#desenhistaLetra.apagarQuadro();
-        this.#palavra.trocaPalavra();
-        this.#tentativas = 9;
-        this.#historicoDeLetras.splice(0)
-        this.#desenhistaLetra.numeroDeLetras = this.#palavra.palavraAtual.length;
-        this.#desenhistaForca.controlaDesenho(this.#tentativas);
-        this.#desenhistaLetra.desenhaEspacoLetras();
-
-  },2000)
 }
 
+/**
+ * @method executado quando o jogador clicar no botao de novo jogo
+ */
+trocaPalavra(){
+    this.#revelaPalavra();
+    setTimeout(() => this.#resetaJogo(),2000);
+}
+
+/**
+ * @method metedo principal que controla todas as funcoes do jogo
+ */
 controladorPrincipal(letra) {
 
   let fimDeJogo;
-  const indexDosAcertos = this.#palavra.encontraLetra(letra);
+  const indexDosAcertos = this.#palavra.encontraLetra(letra);//verifica se todas as letras foram acertadas
 
 
   //verifica se a letra consta no histórico se falso entra dentro do if
   if(!this.#verificaHistorico(letra)){
     
-    //verifica se a letra consta na palavra;
+    //verifica se o array de acertos esta vazio caso sim significa que o jogador errou
     if (indexDosAcertos.length == 0) {
 
-      this.#tentativas--;
-      if(localStorage.getItem("audio") === "true") this.#audioErrou.play();
-      this.#desenhistaForca.controlaDesenho(this.#tentativas);
+      this.#tentativas--; //decrementa -1 do numero de tentativas restante
+      if(localStorage.getItem("audio") === "true") this.#audioErrou.play();//toca o audio de erro
+      this.#desenhistaForca.controlaDesenho(this.#tentativas);//desenha no quadro da forca com base no numero de tentativas
 
     }else{
 
-      if(localStorage.getItem("audio") === "true") this.#audioAcertou.play();
-      this.#desenhistaLetra.desenhaLetra(letra,indexDosAcertos);
+      if(localStorage.getItem("audio") === "true") this.#audioAcertou.play(); //toca audio de acerto
+      this.#desenhistaLetra.desenhaLetra(letra,indexDosAcertos); //escreve a letra no quadro da palavra
 
     }
   }
   
   fimDeJogo = this.#verificaGanhou();
+  //caso o jogadore tenha acertado a palavra ou perdido executa este treicho de codigo
   if(fimDeJogo){
-    if(localStorage.getItem("audio") === "true") this.#audioGanhou.play();
-    setTimeout(() => alert("Você ganhou!"),1000);
-    setTimeout(() => {
-      this.#desenhistaForca.controlaDesenho(-1);    
-      this.#desenhistaLetra.apagarQuadro();
-      this.#palavra.trocaPalavra();
-      this.#tentativas = 9;
-      this.#palavra.acertos = new Array(this.#palavra.palavraAtual.length);
-      for (var i = 0; i < this.#palavra.acertos.length; i++) {
-          this.#palavra.acertos[i] = 0;
-      }
-      this.#historicoDeLetras.splice(0)
-      this.#desenhistaLetra.numeroDeLetras = this.#palavra.palavraAtual.length;
-      this.#desenhistaForca.controlaDesenho(this.#tentativas);
-      this.#desenhistaLetra.desenhaEspacoLetras();
 
-    },3000);
+    if(localStorage.getItem("audio") === "true") this.#audioGanhou.play(); //toca audio de vitoria
+
+    setTimeout(() => alert("Você ganhou!"),1000); //mensagem de vitoria
+    setTimeout(() => this.#resetaJogo(),3000); //reseta o jogo
+
   }else if(this.#tentativas == 0){
-    fimDeJogo = true;
-    if(localStorage.getItem("audio") === "true") this.#audioPerdeu.play();
-    setTimeout(() => alert("Você perdeu."),1000);
-    for(let i = 0; i < this.#palavra.acertos.length; i++){
-      if(this.#palavra.acertos[i] != 1){
-        this.#desenhistaLetra.desenhaLetra(this.#palavra.palavraAtual[i],[i]);
-      }
-    }
-    setTimeout(() => {
-      this.#desenhistaForca.controlaDesenho(-1);    
-      this.#desenhistaLetra.apagarQuadro();
-        this.#palavra.trocaPalavra();
-        this.#tentativas = 9;
-        this.#palavra.acertos = new Array(this.#palavra.palavraAtual.length);
-        for (var i = 0; i < this.#palavra.acertos.length; i++) {
-            this.#palavra.acertos[i] = 0;
-        }
-        this.#historicoDeLetras.splice(0)
-        this.#desenhistaLetra.numeroDeLetras = this.#palavra.palavraAtual.length;
-        this.#desenhistaForca.controlaDesenho(this.#tentativas);
-        this.#desenhistaLetra.desenhaEspacoLetras();
 
-    },3000);
+    fimDeJogo = true; //sinaliza o fim do jogo
+
+    if(localStorage.getItem("audio") === "true") this.#audioPerdeu.play(); //toca audio de derrota
+
+    setTimeout(() => alert("Você perdeu."),1000); //mensagem de derrota
+
+    this.#revelaPalavra(); //revela letras que nao foram acertadas
+    setTimeout(() => this.#resetaJogo(),3000); //reseta o jogo
+
   }
   
   return fimDeJogo;
