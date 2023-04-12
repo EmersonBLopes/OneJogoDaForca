@@ -116,7 +116,7 @@ trocaPalavra(){
 }
 
 /**
- * @method metedo principal que controla todas as funcoes do jogo
+ * @method metodo principal que recebe inputs do usuario, se comunica com outras classes atraves de instancias de objetos e sinaliza caso o jogo tenha chegado ao fim 
  * @param {string} letra solicitada pelo usuario
  * @return {boolean} verdadeiro se o jogo tenha chegado ao fim. caso contrario falso
  */
