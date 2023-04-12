@@ -39,6 +39,8 @@ export default class ControladorJogo{
 /**
  * @method verifica se a letra ja foi utilizada
  * @param {string} letra a qual sera verificada
+ * @return {boolean} verdadeiro se a letra ja foi utilizada caso contario falso
+ *
  */
 #verificaHistorico(letra){
 
@@ -52,11 +54,10 @@ export default class ControladorJogo{
       break;
     }
   };
+
   //caso a letra não tenha sido usada a adicionara ao histórico.
-  if(!resultado){
-  
-    this.#historicoDeLetras.push(letra);
-  }
+  if(!resultado) this.#historicoDeLetras.push(letra); 
+
   return resultado;
 }
 
@@ -74,6 +75,7 @@ export default class ControladorJogo{
         return false;
       }
     }
+
     //se todas as letras foram acertadas retorna true
     return true;
   }
@@ -97,10 +99,11 @@ export default class ControladorJogo{
  * @method responsavel por revelar todas as letras que nao foram acertadas. Consequentemente revelando a palavra
  */
 #revelaPalavra(){
+
+    //confere todos as letras da palavra
     for(let i = 0; i < this.#palavra.palavraAtual.length; i++){
-      if(this.#palavra.acertos[i] != 1){
-        this.#desenhistaLetra.desenhaLetra(this.#palavra.palavraAtual[i],[i]);
-      }
+      //se acerto for diferente de 1 revela letra
+      if(this.#palavra.acertos[i] != 1) this.#desenhistaLetra.desenhaLetra(this.#palavra.palavraAtual[i],[i]); 
     }
 }
 
@@ -114,11 +117,13 @@ trocaPalavra(){
 
 /**
  * @method metedo principal que controla todas as funcoes do jogo
+ * @param {string} letra solicitada pelo usuario
+ * @return {boolean} verdadeiro se o jogo tenha chegado ao fim. caso contrario falso
  */
 controladorPrincipal(letra) {
 
-  let fimDeJogo;
-  const indexDosAcertos = this.#palavra.encontraLetra(letra);//verifica se todas as letras foram acertadas
+  let fimDeJogo; //armazena um boolean indicando se o jogo acabou
+  const indexDosAcertos = this.#palavra.encontraLetra(letra);//verifica se a letra consta no array
 
 
   //verifica se a letra consta no histórico se falso entra dentro do if
@@ -139,8 +144,8 @@ controladorPrincipal(letra) {
     }
   }
   
-  fimDeJogo = this.#verificaGanhou();
-  //caso o jogadore tenha acertado a palavra ou perdido executa este treicho de codigo
+  fimDeJogo = this.#verificaGanhou();//verifica se o jogo chegou ao fim
+  //caso o usuario tenha acertado a palavra ou perdido executa este treicho de codigo
   if(fimDeJogo){
 
     if(localStorage.getItem("audio") === "true") this.#audioGanhou.play(); //toca audio de vitoria
@@ -148,7 +153,7 @@ controladorPrincipal(letra) {
     setTimeout(() => alert("Você ganhou!"),1000); //mensagem de vitoria
     setTimeout(() => this.#resetaJogo(),3000); //reseta o jogo
 
-  }else if(this.#tentativas == 0){
+  }else if(this.#tentativas == 0){ //treicho que sera executado se o usuario perdeu
 
     fimDeJogo = true; //sinaliza o fim do jogo
 
@@ -163,4 +168,5 @@ controladorPrincipal(letra) {
   
   return fimDeJogo;
 }
+
 }
