@@ -1,18 +1,14 @@
 import Forca from "./canva/Forca.js";
 import Letras from "./canva/Letras.js";
 import Palavra from "./palavra/Palavra.js"
-import Requisicao from "../API/Requisicao.js";
-import listaDePalavra from "../../data/listaDePalavra.json" assert {type:"json"};
 
 export default class ControladorJogo{
 
-  #palavra = new Palavra();
+  #palavra;
   #tentativas;
-  #acertos;
-  #historicoDeLetras = new Array();
+  #historicoDeLetras;
   #desenhistaForca;
   #desenhistaLetra;
-  #requisicao;
   #audioGanhou;
   #audioPerdeu;
   #audioAcertou;
@@ -22,17 +18,28 @@ export default class ControladorJogo{
    * @class classe responsavel por controlar o jogo e se comunicar com as outras classes
    */
   constructor(){
+    //configuracao dos atributos desta classe
+    this.#palavra = new Palavra();
     this.#tentativas = 9;
+    this.#historicoDeLetras = new Array();
+
+    //configuracao dos objetos da classes responsaveis pelo desenho
     this.#desenhistaForca = new Forca();
     this.#desenhistaLetra = new Letras(this.#palavra.palavraAtual.length);
     this.#desenhistaForca.controlaDesenho(this.#tentativas);
     this.#desenhistaLetra.desenhaEspacoLetras();
+
+    //configuracao do audio do jogo
     this.#audioGanhou = new Audio("../audio/ganhou.mp3");
     this.#audioPerdeu = new Audio("../audio/perdeu.mp3");
     this.#audioErrou = new Audio("../audio/erro.mp3");
     this.#audioAcertou = new Audio("../audio/acerto.mp3");
   }
 
+/**
+ * @method verifica se a letra ja foi utilizada
+ * @param {string} letra a qual sera verificada
+ */
 #verificaHistorico(letra){
 
   //variavel que armazena o resultado da consulta
