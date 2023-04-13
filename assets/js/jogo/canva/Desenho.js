@@ -11,7 +11,6 @@ export default class Desenho{
 
     this.#tela = tela;
   }
-  //var telaPalavra = document.getElementById("quadro-letras");
   
   get alturaMaxima(){ return this.#tela.getBoundingClientRect().height; }
 
@@ -112,6 +111,9 @@ export default class Desenho{
     this.#tela.appendChild(letra);
   }
 
+  /**
+   * @method remove todos os elemetos do quadro
+   */
   limpaQuadro(){
     while(this.#tela.hasChildNodes()){
       this.#tela.removeChild(this.#tela.firstChild);

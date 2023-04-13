@@ -6,6 +6,9 @@ export default class Letras{
   #numeroDeLetras;
   #posicoesDasLetras;
 
+  /**
+   * @class classe que controla os desenhos do quadro de letras
+   */
   constructor(numeroDeLetras){
     this.#desenhistaLetra = new Desenho(document.getElementById("quadro-letras"));
     this.#numeroDeLetras = numeroDeLetras;
@@ -16,7 +19,10 @@ export default class Letras{
     this.#numeroDeLetras = numero;
   }
 
-  //responsavel por calcular o tamanho da palavra, adiciona o somatório de cada palavra e margem e retorna dentro de uma variavel
+  /**
+   * @method calcula o tamanho da palavra como um todo incluindo margim
+   * @return {number} tamanho da palavra. este valor sera utilizado posteriormente para centralizar a palavra no quadro
+   */
   #calculaLarguraPalavra(porcentagemTraco,porcentagemMargem){
     var larguraPalavra = 0;
     for(var i = 1; i <= this.#numeroDeLetras;i++){
@@ -31,9 +37,11 @@ export default class Letras{
   }
 
 
-  //desenha o espaço para cada letra da palavra.
+  /**
+   * @method desenha os tracos que ficam abaixo da letra
+   */
   desenhaEspacoLetras(){
-
+    
     var x1,x2,larguraPalavra;
     const y = this.#desenhistaLetra.alturaMaxima*0.75;
     
@@ -53,6 +61,9 @@ export default class Letras{
     }
   }
 
+  /**
+   * @method apaga os desenhos do quadro de letras
+   */
   apagarQuadro(){
     this.#desenhistaLetra.limpaQuadro();
   }

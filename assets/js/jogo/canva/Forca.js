@@ -4,10 +4,17 @@ export default class Forca{
 
   #desenhista;
 
+  /**
+   * @class responsavel por controlar o desenho da forca
+   */
   constructor(){
     this.#desenhista = new Desenho(document.getElementById("quadro-forca"));
   }
 
+  /**
+   * @method controla o desenho com base no numero de tentativas
+   * @param {number} tentativas restantes
+   */
    controlaDesenho(tentativa){
 
       switch(tentativa){
